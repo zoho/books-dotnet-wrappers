@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E27C3278-1015-4D03-B896-300A537F55B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>zohobooks</RootNamespace>
+    <AssemblyName>books-dotnet</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\books-dotnet.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="api\Api.cs" />
+    <Compile Include="api\BankAccountsApi.cs" />
+    <Compile Include="api\BankRulesApi.cs" />
+    <Compile Include="api\BankTransactionsApi.cs" />
+    <Compile Include="api\BaseCurrencyAdjustmentsApi.cs" />
+    <Compile Include="api\BillsApi.cs" />
+    <Compile Include="api\ChartOfAccountsApi.cs" />
+    <Compile Include="api\ContactsApi.cs" />
+    <Compile Include="api\CreditNotesApi.cs" />
+    <Compile Include="api\CustomerPaymentsApi.cs" />
+    <Compile Include="api\EstimatesApi.cs" />
+    <Compile Include="api\ExpensesApi.cs" />
+    <Compile Include="api\InvoicesApi.cs" />
+    <Compile Include="api\ItemsApi.cs" />
+    <Compile Include="api\JournalsApi.cs" />
+    <Compile Include="api\OrganizationsApi.cs" />
+    <Compile Include="api\ProjectsApi.cs" />
+    <Compile Include="api\RecurringExpensesApi.cs" />
+    <Compile Include="api\RecurringInvoicesApi.cs" />
+    <Compile Include="api\SettingsApi.cs" />
+    <Compile Include="api\UsersApi.cs" />
+    <Compile Include="api\VendorPaymentsApi.cs" />
+    <Compile Include="exceptions\Exceptions.cs" />
+    <Compile Include="model\Account.cs" />
+    <Compile Include="model\Address.cs" />
+    <Compile Include="model\AddressFormats.cs" />
+    <Compile Include="model\ApplyToInvoices.cs" />
+    <Compile Include="model\AutoReminder.cs" />
+    <Compile Include="model\AutoReminderAndPlaceHolders.cs" />
+    <Compile Include="model\AutoReminderList.cs" />
+    <Compile Include="model\BankAccount.cs" />
+    <Compile Include="model\BankAccountList.cs" />
+    <Compile Include="model\BillList.cs" />
+    <Compile Include="model\CommentList.cs" />
+    <Compile Include="model\ContactList.cs" />
+    <Compile Include="model\ContactPersonList.cs" />
+    <Compile Include="model\Contacts.cs" />
+    <Compile Include="model\CreditNoteList.cs" />
+    <Compile Include="model\CreditNoteRefundList.cs" />
+    <Compile Include="model\CreditedInvoiceList.cs" />
+    <Compile Include="model\CustomerPaymentList.cs" />
+    <Compile Include="model\EmailHistoryList.cs" />
+    <Compile Include="model\EstimateList.cs" />
+    <Compile Include="model\ExchangeRateList.cs" />
+    <Compile Include="model\ExpenseList.cs" />
+    <Compile Include="model\ManualReminderList.cs" />
+    <Compile Include="model\OrganizationList.cs" />
+    <Compile Include="model\PaymentList.cs" />
+    <Compile Include="model\RecurringExpenseList.cs" />
+    <Compile Include="model\RecurringInvoiceList.cs" />
+    <Compile Include="model\RuleList.cs" />
+    <Compile Include="model\TaxGroupToCreate.cs" />
+    <Compile Include="model\TemplateList.cs" />
+    <Compile Include="model\Transaction.cs" />
+    <Compile Include="model\BaseCurrencyAdjustment.cs" />
+    <Compile Include="model\Bill.cs" />
+    <Compile Include="model\Payment.cs" />
+    <Compile Include="model\ChartOfAccount.cs" />
+    <Compile Include="model\ChartOfAccountList.cs" />
+    <Compile Include="model\Comment.cs" />
+    <Compile Include="model\Contact.cs" />
+    <Compile Include="model\ContactPerson.cs" />
+    <Compile Include="model\CreditedInvoice.cs" />
+    <Compile Include="model\CreditNote.cs" />
+    <Compile Include="model\CreditNoteSettings.cs" />
+    <Compile Include="model\Criterion.cs" />
+    <Compile Include="model\CurrencyList.cs" />
+    <Compile Include="model\Currency.cs" />
+    <Compile Include="model\Customer.cs" />
+    <Compile Include="model\CustomerPayment.cs" />
+    <Compile Include="model\CustomField.cs" />
+    <Compile Include="model\CustomFieldList.cs" />
+    <Compile Include="model\DefaultTemplates.cs" />
+    <Compile Include="model\EmailHistory.cs" />
+    <Compile Include="model\EmailId.cs" />
+    <Compile Include="model\EmailNotification.cs" />
+    <Compile Include="model\Email.cs" />
+    <Compile Include="model\EmailTemplate.cs" />
+    <Compile Include="model\Estimate.cs" />
+    <Compile Include="model\EstimateSettings.cs" />
+    <Compile Include="model\ExceptionModel.cs" />
+    <Compile Include="model\ExchangeRate.cs" />
+    <Compile Include="model\Expense.cs" />
+    <Compile Include="model\FromEmail.cs" />
+    <Compile Include="model\Instrumentation.cs" />
+    <Compile Include="model\Invoice.cs" />
+    <Compile Include="model\InvoiceSettings.cs" />
+    <Compile Include="model\InvoicesList.cs" />
+    <Compile Include="model\ItemList.cs" />
+    <Compile Include="model\Journal.cs" />
+    <Compile Include="model\LineItem.cs" />
+    <Compile Include="model\BaseCurrencyAdjustmentsList.cs" />
+    <Compile Include="model\JournalList.cs" />
+    <Compile Include="model\ManualReminder.cs" />
+    <Compile Include="model\ManualReminderAndPlaceHolders.cs" />
+    <Compile Include="model\MatchingTransactions.cs" />
+    <Compile Include="model\NotesAndTerms.cs" />
+    <Compile Include="model\OpeningBalance.cs" />
+    <Compile Include="model\Organization.cs" />
+    <Compile Include="model\PageContext.cs" />
+    <Compile Include="model\PaymentGateway.cs" />
+    <Compile Include="model\PaymentOptions.cs" />
+    <Compile Include="model\PlaceHolders.cs" />
+    <Compile Include="model\Preferences.cs" />
+    <Compile Include="model\Project.cs" />
+    <Compile Include="model\ProjectsList.cs" />
+    <Compile Include="model\ProjectTask.cs" />
+    <Compile Include="model\RecurringExpense.cs" />
+    <Compile Include="model\RecurringInvoice.cs" />
+    <Compile Include="model\Rule.cs" />
+    <Compile Include="model\Statement.cs" />
+    <Compile Include="model\TaskList.cs" />
+    <Compile Include="model\Tax.cs" />
+    <Compile Include="model\TaxList.cs" />
+    <Compile Include="model\TaxGroup.cs" />
+    <Compile Include="model\Template.cs" />
+    <Compile Include="model\Terms.cs" />
+    <Compile Include="model\TimeEntryList.cs" />
+    <Compile Include="model\TimeEntry.cs" />
+    <Compile Include="model\ToContact.cs" />
+    <Compile Include="model\TransactionList.cs" />
+    <Compile Include="model\TransactionsToBeMatched.cs" />
+    <Compile Include="model\Unit.cs" />
+    <Compile Include="model\UseCredits.cs" />
+    <Compile Include="model\User.cs" />
+    <Compile Include="model\UserList.cs" />
+    <Compile Include="model\UsersToAssign.cs" />
+    <Compile Include="model\VendorPayment.cs" />
+    <Compile Include="model\VendorPaymentList.cs" />
+    <Compile Include="parser\BankAccountParser.cs" />
+    <Compile Include="parser\BankRuleParser.cs" />
+    <Compile Include="parser\BankTransactionParser.cs" />
+    <Compile Include="parser\BaseCurrencyAdjustmentParser.cs" />
+    <Compile Include="parser\BillParser.cs" />
+    <Compile Include="parser\ChartOfAccountParser.cs" />
+    <Compile Include="parser\ContactParser.cs" />
+    <Compile Include="parser\CreditNoteParser.cs" />
+    <Compile Include="parser\CreditNoteSettingsParser.cs" />
+    <Compile Include="parser\CurrencyParser.cs" />
+    <Compile Include="parser\CustomerPaymentParser.cs" />
+    <Compile Include="parser\EstimateParser.cs" />
+    <Compile Include="parser\EstimateSettingsParser.cs" />
+    <Compile Include="parser\ExpenseParser.cs" />
+    <Compile Include="parser\InvoiceParser.cs" />
+    <Compile Include="parser\InvoiceSettingsParser.cs" />
+    <Compile Include="parser\ItemParser.cs" />
+    <Compile Include="parser\JournalParser.cs" />
+    <Compile Include="parser\OrganizationParser.cs" />
+    <Compile Include="parser\ProjectParser.cs" />
+    <Compile Include="parser\RecurringExpenseParser.cs" />
+    <Compile Include="parser\RecurringInvoiceParser.cs" />
+    <Compile Include="parser\SettingParser.cs" />
+    <Compile Include="parser\UserParser.cs" />
+    <Compile Include="parser\VendorPaymentParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\ZohoBooks.cs" />
+    <Compile Include="util\ZohoHttpClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
