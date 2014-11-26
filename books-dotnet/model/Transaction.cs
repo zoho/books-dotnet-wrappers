@@ -171,5 +171,45 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The credit_amount.</value>
         public object credit_amount { get; set; }
+        /// <summary>
+        /// Gets or sets the transaction_status.
+        /// </summary>
+        /// <value>The transaction_status.</value>
+        public string transaction_status { get; set; }
+        /// <summary>
+        /// Gets or sets the transaction_status_formatted.
+        /// </summary>
+        /// <value>The transaction_status_formatted.</value>
+        public string transaction_status_formatted { get; set; }
+        /// <summary>
+        /// Gets or sets the transaction_source.
+        /// </summary>
+        /// <value>The transaction_source.</value>
+        public string transaction_source { get; set; }
+        /// <summary>
+        /// Gets or sets the account_name.
+        /// </summary>
+        /// <value>The account_name.</value>
+        public string account_name { get; set; }
+        /// <summary>
+        /// Gets or sets the account_type.
+        /// </summary>
+        /// <value>The account_type.</value>
+        public string account_type { get; set; }
+        /// <summary>
+        /// Gets or sets the price_precision.
+        /// </summary>
+        /// <value>The price_precision.</value>
+        public int price_precision { get; set; }
+        /// <summary>
+        /// Gets or sets the currency_symbol.
+        /// </summary>
+        /// <value>The currency_symbol.</value>
+        public string currency_symbol { get; set; }
+        /// <summary>
+        /// Gets or sets the imported_transactions.
+        /// </summary>
+        /// <value>The imported_transactions.</value>
+        public List<ImportedTransaction> imported_transactions { get; set; }
     }
 }

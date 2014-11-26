@@ -20,6 +20,7 @@ namespace JournalsApiTest
                 var journalsApi = service.GetJournalsApi();
                 var parameters = new Dictionary<object, object>();
                 parameters.Add("filter_by", "JournalDate.All");
+                Console.WriteLine("---------------Journals List--------------------");
                 var journalsList = journalsApi.GetJournals(parameters);
                 var journals = journalsList;
                 
@@ -28,9 +29,9 @@ namespace JournalsApiTest
                     Console.WriteLine("{0},{1},{2}",journal.journal_id,journal.notes,journal.total);
                 }
                 var journalId = journals[0].journal_id;
-                var bankaccountsApi = service.GetBankAccountsApi();
-                var parameters2 = new Dictionary<object, object>();
-                var accountId = bankaccountsApi.GetBankAccounts(parameters2)[0].account_id;
+                var accountsApi = service.GetChartOfAccountsApi();
+                var accountId = accountsApi.GetChartOfAcounts(null)[0].account_id;
+                Console.WriteLine("---------------Specified Journal--------------------");
                 var journal1 = journalsApi.Get(journalId);
                 Console.WriteLine("{0},{1},{2}", journal1.journal_id, journal1.notes, journal1.total);
                 var lineitems = journal1.line_items;
@@ -55,6 +56,8 @@ namespace JournalsApiTest
                         }
                     }
                 };
+
+                Console.WriteLine("---------------New Journal--------------------");
                 var newJournal = journalsApi.Create(newJournalInfo);
                 Console.WriteLine("{0},{1},{2}", newJournal.journal_id, newJournal.notes, newJournal.total);
                 var lineitems1 = newJournal.line_items;
@@ -64,21 +67,27 @@ namespace JournalsApiTest
                 }
                 var updateInfo = new Journal()
                 {
-                    journal_date = "2014-02-10",
+                    journal_date = "2014-11-10",
                     line_items = new List<LineItem>()
                     {
                         new LineItem(){
                             account_id=accountId,
-                            debit_or_credit="credit",
-                            amount=150
+                            debit_or_credit="debit",
+                            amount=130
                         },
-                        
+                        new LineItem(){
+                            account_id=accountId,
+                            debit_or_credit="credit",
+                            amount=130
+                        }
                     },
                    notes="hari"
                 };
-                var updatedJournal = journalsApi.Update(journalId, updateInfo);
+                Console.WriteLine("---------------Updated Journal--------------------");
+                var updatedJournal = journalsApi.Update(newJournal.journal_id, updateInfo);
                 Console.WriteLine("{0},{1},{2}", updatedJournal.journal_id, updatedJournal.notes, updatedJournal.total);
-                var deljournal = journalsApi.Delete(journals[2].journal_id);
+                Console.WriteLine("---------------Delete Journal--------------------");
+                var deljournal = journalsApi.Delete(updatedJournal.journal_id);
                 Console.WriteLine(deljournal);
             }
             catch(Exception e)

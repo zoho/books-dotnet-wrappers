@@ -11,8 +11,8 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.IO;
 using zohobooks.exceptions;
-using zohobooks.Util;
-using zohobooks.Parser;
+using zohobooks.util;
+using zohobooks.parser;
 
 namespace zohobooks.api
 {
@@ -47,7 +47,8 @@ namespace zohobooks.api
         /// </summary>
         /// <param name="parameters">The parameters is the dictionary object which is having the filters to refine the list in the form of key,value pairs.<br></br>The possible filter keys and variants are listed below<br></br>
         /// <table>
-        /// <tr><td>contact_neme</td><td>Search contacts by contact name.<br></br>Variants: <i>contact_name_startswith</i> and <i>contact_name_contains</i></td></tr>
+        /// <tr><td>contact_name</td><td>Search contacts by contact name.<br></br>Variants: <i>contact_name_startswith</i> and <i>contact_name_contains</i></td></tr>
+        /// <tr><td>company_name</td><td>Search contacts by company name.<br></br>Variants: <i>company_name_startswith</i> and <i>company_name_contains</i></td></tr>
         /// <tr><td>first_name</td><td>Search contacts by first name of the contact person.<br></br>Variants: <i>first_name_startswith</i> and <i>first_name_contains</i></td></tr>
         /// <tr><td>last_name</td><td>Search contacts by last name of the contact person.<br></br>Variants: <i>last_name_startswith</i> and <i>last_name_contains</i></td></tr>
         /// <tr><td>address</td><td>Search contacts by any of the address fields.<br></br>Variants: <i>address_startswith</i> and <i>address_contains</i></td></tr>
@@ -63,7 +64,6 @@ namespace zohobooks.api
         {
             string url = baseAddress;
             var responce = ZohoHttpClient.get(url, getQueryParameters(parameters));
-            var responceContent = responce.Content.ReadAsStringAsync().Result;
             return ContactParser.getContactList(responce);
         }
 
@@ -76,13 +76,14 @@ namespace zohobooks.api
         {
             string url = baseAddress+"/"+contact_id;
             var responce = ZohoHttpClient.get(url, getQueryParameters());
+            Console.WriteLine(responce.Content.ReadAsStringAsync().Result);
             return ContactParser.getContact(responce);
         }
 
         /// <summary>
         /// Creates a contact with given information.
         /// </summary>
-        /// <param name="new_contact_info">The new_contact_info is the Contact object which provides the information to create a contact with contact_name and currency_id as mandatory parameters.</param>
+        /// <param name="new_contact_info">The new_contact_info is the Contact object which provides the information to create a contact with contact_name as mandatory parameters.</param>
         /// <returns>Contact object.</returns>
         public Contact Create(Contact new_contact_info)
         {
@@ -297,10 +298,11 @@ namespace zohobooks.api
         /// </summary>
         /// <param name="contact_person_id">The contact_person_id is the identifier of the contact person.</param>
         /// <returns>ContactPerson object.</returns>
-        public ContactPerson GetContactPerson(string contact_person_id)
+        public ContactPerson GetContactPerson(string contact_id,string contact_person_id)
         {
-            string url = baseAddress +"/contactpersons/"+contact_person_id;
+            string url = baseAddress +"/"+contact_id+"/contactpersons/"+contact_person_id;
             var responce = ZohoHttpClient.get(url, getQueryParameters());
+            Console.WriteLine(responce.Content.ReadAsStringAsync().Result);
             return ContactParser.getContactPerson(responce);
         }
 

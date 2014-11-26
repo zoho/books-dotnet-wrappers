@@ -31,11 +31,7 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The contact_type.</value>
         public string contact_type { get; set; }
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Contact" /> is is_crm_customer.
-        /// </summary>
-        /// <value><c>true</c> if is_crm_customer; otherwise, <c>false</c>.</value>
-        public bool is_crm_customer { get; set; }
+
         /// <summary>
         /// Gets or sets the primary_contact_id.
         /// </summary>
@@ -181,5 +177,87 @@ namespace zohobooks.model
         /// </summary>
         /// <value><c>true</c> if snail_mail; otherwise, <c>false</c>.</value>
         public bool snail_mail { get; set; }
+        /// <summary>
+        /// Gets or sets the company_name.
+        /// </summary>
+        /// <value>The company_name.</value>
+        public string company_name { get; set; }
+        /// <summary>
+        /// Gets or sets the first_name.
+        /// </summary>
+        /// <value>The first_name.</value>
+        public string first_name { get; set; }
+        /// <summary>
+        /// Gets or sets the last_name.
+        /// </summary>
+        /// <value>The last_name.</value>
+        public string last_name { get; set; }
+        /// <summary>
+        /// Gets or sets the phone.
+        /// </summary>
+        /// <value>The phone.</value>
+        public string phone { get; set; }
+        /// <summary>
+        /// Gets or sets the mobile.
+        /// </summary>
+        /// <value>The mobile.</value>
+        public string mobile { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Contact"/> is is_linked_with_zohocrm.
+        /// </summary>
+        /// <value><c>true</c> if is_linked_with_zohocrm; otherwise, <c>false</c>.</value>
+        public bool is_linked_with_zohocrm { get; set; }
+        /// <summary>
+        /// Gets or sets the website.
+        /// </summary>
+        /// <value>The website.</value>
+        public string website { get; set; }
+
+        /// <summary>
+        /// Gets or sets the contact_salutation.
+        /// </summary>
+        /// <value>The contact_salutation.</value>
+        public string contact_salutation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>The source.</value>
+        public string source { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Contact"/> is is_crm_customer.
+        /// </summary>
+        /// <value><c>true</c> if is_crm_customer; otherwise, <c>false</c>.</value>
+        public bool is_crm_customer { get; set; }
+
+        /// <summary>
+        /// Gets or sets the price_precision.
+        /// </summary>
+        /// <value>The price_precision.</value>
+        public int price_precision { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the pricebook_id.
+        /// </summary>
+        /// <value>The pricebook_id.</value>
+        public string pricebook_id { get; set; }
+        /// <summary>
+        /// Gets or sets the pricebook_name.
+        /// </summary>
+        /// <value>The pricebook_name.</value>
+        public string pricebook_name { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Contact"/> is associated_with_square.
+        /// </summary>
+        /// <value><c>true</c> if associated_with_square; otherwise, <c>false</c>.</value>
+        public bool associated_with_square { get; set; }
+        /// <summary>
+        /// Gets or sets the cards.
+        /// </summary>
+        /// <value>The cards.</value>
+        public List<object> cards { get; set; }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace InvoiceSettingsApitest
             try
             {
                 var service = new ZohoBooks();
-                service.initialize("{authtoken}", "{organisation id}");
+                service.initialize("{authtoken}", "{organization id}");
                 var invoiceSettingsApi = service.GetSettingsApi();
                 var invoiceSettings = invoiceSettingsApi.GetInvoiceSettings();
                 Console.WriteLine("auto_generate:{0},\nis_sales_person_required:{1},\nis_shipping_charge_required:{2},\nnotes:{3}", invoiceSettings.auto_generate, invoiceSettings.is_sales_person_required, invoiceSettings.is_shipping_charge_required, invoiceSettings.notes);

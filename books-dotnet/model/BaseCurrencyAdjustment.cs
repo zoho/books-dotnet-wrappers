@@ -56,6 +56,10 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The accounts.</value>
         public List<Account> accounts { get; set; }
-        
+        /// <summary>
+        /// Gets or sets the exchange_rate_formatted.
+        /// </summary>
+        /// <value>The exchange_rate_formatted.</value>
+        public string exchange_rate_formatted { get; set; }
     }
 }

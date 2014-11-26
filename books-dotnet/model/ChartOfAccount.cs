@@ -71,5 +71,25 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The currency_id.</value>
         public string currency_id { get; set; }
+        /// <summary>
+        /// Gets or sets the currency_code.
+        /// </summary>
+        /// <value>The currency_code.</value>
+        public string currency_code { get; set; }
+        /// <summary>
+        /// Gets or sets the is_mileage.
+        /// </summary>
+        /// <value>The is_mileage.</value>
+        public string is_mileage { get; set; }
+        /// <summary>
+        /// Gets or sets the mileage_unit.
+        /// </summary>
+        /// <value>The mileage_unit.</value>
+        public string mileage_unit { get; set; }
+        /// <summary>
+        /// Gets or sets the mileage_rate.
+        /// </summary>
+        /// <value>The mileage_rate.</value>
+        public double mileage_rate { get; set; }
     }
 }

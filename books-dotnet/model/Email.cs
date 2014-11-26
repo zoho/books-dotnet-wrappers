@@ -77,9 +77,29 @@ namespace zohobooks.model
         /// <value>The contact_id.</value>
         public string contact_id { get; set; }
         /// <summary>
-        /// Gets or sets the __invalid_name__subject.
+        /// Gets or sets the customer_name.
         /// </summary>
-        /// <value>The __invalid_name__subject.</value>
-        public string __invalid_name__subject { get; set; }
+        /// <value>The customer_name.</value>
+        public string customer_name { get; set; }
+        /// <summary>
+        /// Gets or sets the entity_id.
+        /// </summary>
+        /// <value>The entity_id.</value>
+        public string entity_id { get; set; }
+        /// <summary>
+        /// Gets or sets the file_name_without_extension.
+        /// </summary>
+        /// <value>The file_name_without_extension.</value>
+        public string file_name_without_extension { get; set; }
+        /// <summary>
+        /// Gets or sets the vendor_id.
+        /// </summary>
+        /// <value>The vendor_id.</value>
+        public string vendor_id { get; set; }
+        /// <summary>
+        /// Gets or sets the vendor_name.
+        /// </summary>
+        /// <value>The vendor_name.</value>
+        public string vendor_name { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
 
-namespace zohobooks.Parser
+namespace zohobooks.parser
 {
     /// <summary>
     /// Used to define the parser object of BankRulesApi.

@@ -18,6 +18,7 @@ namespace SettingsApiTest
                 var service = new ZohoBooks();
                 service.initialize("{authtoken}", "{organization id}");
                 SettingsApi settingsApi = service.GetSettingsApi();
+                Console.WriteLine("----------------Preferences-------------");
                 var preferences = settingsApi.GetPreferences();
                 var autoreminders = preferences.auto_reminders;
                 Console.WriteLine("Auto Reminders");
@@ -33,15 +34,16 @@ namespace SettingsApiTest
                     is_estimate_enabled=false,
                 };
                 var updateMsg = settingsApi.UpdatePreferences(updateInfo);
-                Console.WriteLine(updateMsg);
+                
                 var newUnit = new Unit()
                 {
-                    unit = ""
+                    unit = "new unit"
                 };
                 var addUnit = settingsApi.CreateUnit(newUnit);
                 Console.WriteLine(addUnit);
                 var deleteUnit = settingsApi.DeleteUnit("{Unit id}");
                 Console.WriteLine(deleteUnit);
+                Console.WriteLine("----------------------------------------------------\n------------------Tax and TaxGroups-----------------");
                 var taxeslist = settingsApi.GetTaxes();
                 var taxes = taxeslist;
                 var taxId = taxes[0].tax_id;
@@ -51,7 +53,7 @@ namespace SettingsApiTest
                 Console.WriteLine("taxId:{0},name:{1},percentage:{2},Type:{3}", tax1.tax_id, tax1.tax_name, tax1.tax_percentage, tax1.tax_type);
                 var newTaxInfo = new Tax()
                 {
-                    tax_name="VAT",
+                    tax_name="VAT1",
                     tax_percentage=5
                 };
                 var newTax = settingsApi.CreateTax(newTaxInfo);
@@ -62,11 +64,11 @@ namespace SettingsApiTest
                     tax_type = "compound_tax",
                    
                 };
-                var updatedTax = settingsApi.UpdateTax(taxId, updateInfo1);
+                var updatedTax = settingsApi.UpdateTax(newTax.tax_id, updateInfo1);
                 Console.WriteLine("taxId:{0},name:{1},percentage:{2},Type:{3}", updatedTax.tax_id, updatedTax.tax_name, updatedTax.tax_percentage, updatedTax.tax_type);
-                var deletemsg = settingsApi.DeleteTax(taxes[4].tax_id);
+                var deletemsg = settingsApi.DeleteTax(updatedTax.tax_id);
                 Console.WriteLine(deletemsg);
-                var taxgroup = settingsApi.GetTaxGroup("{tax group id}");
+                var taxgroup = settingsApi.GetTaxGroup("71917000000259007");
                 Console.WriteLine("the tax group {0} contains the taxes",taxgroup.tax_group_name);
                 var taxes1 = taxgroup.taxes;
                 foreach(var tax in taxes1)
@@ -87,10 +89,11 @@ namespace SettingsApiTest
                     tax_group_name="purcha",
                     taxes = taxes[0].tax_id + "," + taxes[2].tax_id,
                 };
-                var updatemsg = settingsApi.UpdateTaxGroup(taxGroupId, updateInfo2);
-                Console.WriteLine(updatemsg);
+                var updateTaxGroup = settingsApi.UpdateTaxGroup(taxGroupId, updateInfo2);
+                Console.WriteLine("the tax group {0} updated as the taxes of tax percentage{1}", updateTaxGroup.tax_group_name, updateTaxGroup.tax_group_percentage);
                 var deleteMsg = settingsApi.DeleteTaxGroup(taxGroupId);
                 Console.WriteLine(deleteMsg);
+                Console.WriteLine("----------------------------------------------------\n------------------Opening balence-----------------");
                 var openingbalence = settingsApi.GetOpeningBalance();
                 Console.WriteLine("The accounts in opening balance {0}", openingbalence.opening_balance_id);
                 var accounts = openingbalence.accounts;
@@ -103,10 +106,10 @@ namespace SettingsApiTest
                     {
                         new Account()
                         {
-                            account_id="{account id}",
+                            account_id="71917000000000379",
                             debit_or_credit="credit",
                             amount=200,
-                            currency_id="{currency id}",
+                            currency_id="71917000000000099",
                 
                          },
                     }
@@ -123,10 +126,10 @@ namespace SettingsApiTest
                     {
                         new Account()
                         {
-                            account_id="{account id}",
+                            account_id="71917000000000379",
                             debit_or_credit="credit",
-                            amount=200,
-                            currency_id="{currency id}",
+                            amount=400,
+                            currency_id="71917000000000099",
                         },
                     }
                 };
@@ -137,6 +140,7 @@ namespace SettingsApiTest
                     Console.WriteLine("account id:{3},account name:{0},debit/ccredit:{1},amount:{2}", account.account_name, account.debit_or_credit, account.amount, account.account_id);
                 var delmsg = settingsApi.DeleteOpeningBalance();
                 Console.WriteLine(delmsg);
+                Console.WriteLine("----------------------------------------------------\n------------------Reminders-----------------");
                 var reminders = settingsApi.GetAutoPaymentReminders();
                 var autoRemindId = reminders[1].autoreminder_id;
                 foreach (var reminder in reminders)

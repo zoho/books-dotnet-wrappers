@@ -16,7 +16,7 @@ namespace CreditnoteSettingsApiTest
             try
             {
                 var service = new ZohoBooks();
-                service.initialize("{authtoken}", "{organization id}");
+                service.initialize("{authtoken}", "{organizationId}");
                 var creditnoteSettingsApi = service.GetSettingsApi();
                 var creditnoteSettings = creditnoteSettingsApi.GetCreditnoteSettings();
                 Console.WriteLine("prefix:{0},\nreferencetxt:{1},\nnotes:{2}", creditnoteSettings.prefix_string, creditnoteSettings.reference_text, creditnoteSettings.notes);

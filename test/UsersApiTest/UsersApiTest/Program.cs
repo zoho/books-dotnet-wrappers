@@ -16,10 +16,10 @@ namespace UsersApiTest
             try
             {
                 var service = new ZohoBooks();
-                service.initialize("{auth token}", "{organization id}");
+                service.initialize("{authtoken}", "{organization id}");
                 var usersApi = service.GetUsersApi();
                 var parameters = new Dictionary<object, object>();
-                //parameters.Add("filter_by", "Status.Invited");
+                parameters.Add("filter_by", "Status.Invited");
                 var userslist = usersApi.GetUsers(parameters);
                 var users = userslist;
                 var userId = users[1].user_id;
@@ -38,19 +38,19 @@ namespace UsersApiTest
                 var newUserInfo = new User()
                 {
                     name="hari",
-                    email="hari12mcs@gmail.com",
+                    email="hari12ms@domain.com",
                     user_role="timesheetstaff"
                 };
                 var newUser = usersApi.Create(newUserInfo);
-                Console.WriteLine("user id:{0},\nuser name:{1},\nuser role:{2}.\nstatus:{3}\n", newUser.user_id, newUser.name, newUser.user_role, newUser.status);
+                Console.WriteLine("New user Info: \n user id:{0},\nuser name:{1},\nuser role:{2}.\nstatus:{3}\n", newUser.user_id, newUser.name, newUser.user_role, newUser.status);
                 var updateInfo = new User()
                 {
                     name="user name",
-                    email="user email"
+                    email="useremail@domain.com"
                 };
-                var updatedUser = usersApi.Update(userId, updateInfo);
+                var updatedUser = usersApi.Update(newUser.user_id, updateInfo);
                 Console.WriteLine("user id:{0},\nuser name:{1},\nuser role:{2}.\nstatus:{3}\n", updatedUser.user_id, updatedUser.name, updatedUser.user_role, updatedUser.status);
-                var deleteMsg = usersApi.Delete(users[3].user_id);
+                var deleteMsg = usersApi.Delete(updatedUser.user_id);
                 Console.WriteLine(deleteMsg);
                 var inviteMsg = usersApi.InviteUser(userId);
                 Console.WriteLine(inviteMsg);

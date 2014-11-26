@@ -81,5 +81,10 @@ namespace zohobooks.model
         /// </summary>
         /// <value><c>true</c> if is_sales_person_required; otherwise, <c>false</c>.</value>
         public bool is_sales_person_required { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="EstimateSettings"/> is convert_to_invoice.
+        /// </summary>
+        /// <value><c>true</c> if convert_to_invoice; otherwise, <c>false</c>.</value>
+        public bool convert_to_invoice { get; set; }
     }
 }

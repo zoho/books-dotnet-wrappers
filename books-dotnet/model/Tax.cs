@@ -37,9 +37,14 @@ namespace zohobooks.model
         /// <value>The tax_type.</value>
         public string tax_type { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Tax"/> is is_compound.
+        /// Gets or sets a value indicating whether this <see cref="Tax" /> is is_compound.
         /// </summary>
         /// <value><c>true</c> if is_compound; otherwise, <c>false</c>.</value>
         public bool is_compound { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Tax"/> is is_default_tax.
+        /// </summary>
+        /// <value><c>true</c> if is_default_tax; otherwise, <c>false</c>.</value>
+        public bool is_default_tax { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace CurrenciesApiTest
                 Console.WriteLine("Id:{0},\ncode:{1},\nname:{2},\nsymbol:{3}\nFormat:{4}\n", currency1.currency_id, currency1.currency_code, currency1.currency_name, currency1.currency_symbol, currency1.currency_format);
                 var newCurrencyInfo = new Currency()
                 {
-                    currency_code = "CUP",
+                    currency_code = "JPY",
                     currency_symbol = "%",
                     currency_format = "1,234,567.89"
                 };
@@ -39,31 +39,32 @@ namespace CurrenciesApiTest
                 {
                     currency_symbol = "&"
                 };
-                var updatedCurrncy = currenciesApi.UpdateCurrency(currencyId, updateInfo);
+                var updatedCurrncy = currenciesApi.UpdateCurrency(newCurrency.currency_id, updateInfo);
                 Console.WriteLine("Id:{0},\ncode:{1},\nname:{2},\nsymbol:{3}\nFormat:{4}\n", updatedCurrncy.currency_id, updatedCurrncy.currency_code, updatedCurrncy.currency_name, updatedCurrncy.currency_symbol, updatedCurrncy.currency_format);
-                var deletemsg = currenciesApi.DeleteCurrency(currencies[2].currency_id);
+                var deletemsg = currenciesApi.DeleteCurrency(updatedCurrncy.currency_id);
                 Console.WriteLine(deletemsg);
-                var exchangeratesList = currenciesApi.GetExchangeRates(currencyId, parameters);
+                var ErParameters = new Dictionary<object, object>();
+                var exchangeratesList = currenciesApi.GetExchangeRates("71917000000000097", ErParameters);
                 var exchangerates = exchangeratesList;
-                var exchangeRateId = exchangerates[1].exchange_rate_id;
+                var exchangeRateId = exchangerates[0].exchange_rate_id;
                 foreach (var exchangerate in exchangerates)
                     Console.WriteLine("ExchangerateId:{0},\ncurrency Id:{1},Currency Code:{2},\nRate:{3}\n",exchangerate.exchange_rate_id,exchangerate.currency_id,exchangerate.currency_code,exchangerate.rate);
-                var exchngerate = currenciesApi.GetAnExchangeRate(currencyId, exchangeRateId);
+                var exchngerate = currenciesApi.GetAnExchangeRate("71917000000000097", exchangeRateId);
                 Console.WriteLine("ExchangerateId:{0},\ncurrency Id:{1},\nCurrency Code:{2},\nRate:{3}\n", exchngerate.exchange_rate_id, exchngerate.currency_id, exchngerate.currency_code, exchngerate.rate);
                 var newExchangerateInfo = new ExchangeRate()
                 {
                     effective_date="2014-05-14",
                     rate=31,
                 };
-                var newExchangerate = currenciesApi.CreateAnExchangeRate(currencyId, newExchangerateInfo);
+                var newExchangerate = currenciesApi.CreateAnExchangeRate("71917000000000097", newExchangerateInfo);
                 Console.WriteLine("ExchangerateId:{0},\ncurrency Id:{1},\nCurrency Code:{2},\nRate:{3}\n", newExchangerate.exchange_rate_id, newExchangerate.currency_id, newExchangerate.currency_code, newExchangerate.rate);
                 var updateinfo = new ExchangeRate()
                 {
                     rate = 40,
                 };
-                var updatedExchangerate = currenciesApi.UpdateAnExchangeRate(currencyId, exchangeRateId, updateinfo);
+                var updatedExchangerate = currenciesApi.UpdateAnExchangeRate("71917000000000097", newExchangerate.exchange_rate_id, updateinfo);
                 Console.WriteLine("ExchangerateId:{0},\ncurrency Id:{1},\nCurrency Code:{2},\nRate:{3}\n", updatedExchangerate.exchange_rate_id, updatedExchangerate.currency_id, updatedExchangerate.currency_code, updatedExchangerate.rate);
-                var deleteMsg = currenciesApi.DeleteAnExchangeRate(currencyId, exchangerates[1].exchange_rate_id);
+                var deleteMsg = currenciesApi.DeleteAnExchangeRate("71917000000000097", updatedExchangerate.exchange_rate_id);
                 Console.WriteLine(deleteMsg);
             }
             catch(Exception e)

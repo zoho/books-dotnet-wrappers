@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
-using zohobooks.Util;
-using zohobooks.Parser;
+using zohobooks.util;
+using zohobooks.parser;
 
 namespace zohobooks.api
 {
@@ -49,7 +49,7 @@ namespace zohobooks.api
         {
             string url = baseAddress;
             var response = ZohoHttpClient.get(url, getQueryParameters(parameters));
-            return ProjectParser.getUserList(response);
+            return UserParser.getUserList(response);
         }
 
         /// <summary>

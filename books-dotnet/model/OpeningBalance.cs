@@ -25,5 +25,15 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The accounts.</value>
         public List<Account> accounts { get; set; }
+        /// <summary>
+        /// Gets or sets the price_precision.
+        /// </summary>
+        /// <value>The price_precision.</value>
+        public int price_precision { get; set; }
+        /// <summary>
+        /// Gets or sets the total.
+        /// </summary>
+        /// <value>The total.</value>
+        public double total { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using System.Diagnostics;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.IO;
-using zohobooks.Util;
-using zohobooks.Parser;
+using zohobooks.util;
+using zohobooks.parser;
 
 
 namespace zohobooks.api
@@ -155,6 +155,7 @@ namespace zohobooks.api
         {
             string url = baseAddress + "/transactions";
             var responce = ZohoHttpClient.get(url, getQueryParameters(parameters));
+            Console.WriteLine(responce.Content.ReadAsStringAsync().Result);
             return ChartofaccountParser.getTransactionList(responce);
         }
 
@@ -167,6 +168,7 @@ namespace zohobooks.api
         {
             string url = baseAddress + "/transactions/" +transaction_id;
             var responce = ZohoHttpClient.delete(url, getQueryParameters());
+            Console.WriteLine(responce.Content.ReadAsStringAsync().Result);
             return ChartofaccountParser.getMessage(responce);
         }
     }

@@ -14,7 +14,7 @@ namespace BillsApiTest
         {
             try
             {
-                BillsApi billsApi = new BillsApi("66328a2f80405be002f43119f3e5f16b", "33074688");
+                BillsApi billsApi = new BillsApi("{authtoken}", "{organizationId}");
                 var parameters = new Dictionary<object, object>();
                 var getBillAttach = billsApi.GetAttachment("71917000000088001", parameters);
                 Console.WriteLine(getBillAttach);

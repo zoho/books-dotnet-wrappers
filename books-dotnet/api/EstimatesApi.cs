@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
-using System.Diagnostics;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
-using System.IO;
-using zohobooks.Util;
-using zohobooks.Parser;
+using zohobooks.util;
+using zohobooks.parser;
 
 
 namespace zohobooks.api
@@ -106,7 +102,6 @@ namespace zohobooks.api
             var json = JsonConvert.SerializeObject(new_estimate_info);
             parameters.Add("JSONString", json);
             var responce = ZohoHttpClient.post(url, getQueryParameters(parameters));
-            string responceContent = responce.Content.ReadAsStringAsync().Result;
             return EstimateParser.getEstimate(responce);
         }
 
@@ -150,7 +145,6 @@ namespace zohobooks.api
         {
             string url = baseAddress + "/" + estimate_id + "/status/sent";
             var responce = ZohoHttpClient.post(url, getQueryParameters());
-            var responceContent = responce.Content.ReadAsStringAsync().Result;
             return EstimateParser.getMessage(responce);
         }
 

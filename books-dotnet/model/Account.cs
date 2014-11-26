@@ -100,6 +100,6 @@ namespace zohobooks.model
         /// Gets or sets the amount.
         /// </summary>
         /// <value>The amount.</value>
-        public double amount { get; set; }       
+        public double amount { get; set; }
     }
 }

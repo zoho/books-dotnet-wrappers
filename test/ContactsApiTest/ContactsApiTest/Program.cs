@@ -14,7 +14,7 @@ namespace ContactsApiTest
         static void Main(string[] args)
         {
             var service = new ZohoBooks();
-            service.initialize("{authtoken}", "{organization id}");
+            service.initialize("{authtoken}", "{organizationId}");
             ContactsApi contactsApi = service.GetContactsApi();
             var parameters = new Dictionary<object, object>();
             var contactsList = contactsApi.GetContacts(parameters);
@@ -26,14 +26,14 @@ namespace ContactsApiTest
                 foreach (var cont in contacts)
                     Console.WriteLine("{0},{1},{2}", cont.contact_id, cont.contact_name, cont.contact_type);
             }
-            var contact = contactsApi.Get(contactId);
+            var contact = contactsApi.Get(contacts[0].contact_id);
             Console.WriteLine("{0},{1},{2}", contact.contact_id, contact.contact_name, contact.contact_type);
             var contactpers = contact.contact_persons;
             foreach (var per in contactpers)
                 Console.WriteLine("{0},{1},{2}", per.contact_person_id, per.email, per.is_primary_contact);
             var newContact = new Contact()
             {
-                contact_name = "harikrishna.t",
+                contact_name = "name",
                 payment_terms = 15,
                 payment_terms_label = "Net 15",
                 currency_id = "{currency id}",
@@ -173,33 +173,33 @@ namespace ContactsApiTest
             Console.WriteLine(track);
             var untrack = contactsApi.UnTrack1099(contactId);
             Console.WriteLine(untrack);
-            var cntctpersnsList = contactsApi.GetContactPersons(contactId);
+            var cntctpersnsList = contactsApi.GetContactPersons(contacts[0].contact_id);
             var cntctPersons = cntctpersnsList;
             var contactPersonId = cntctPersons[0].contact_person_id;
             foreach (var cntctper in cntctPersons)
                 Console.WriteLine("{0},{1},{2}", cntctper.contact_person_id, cntctper.last_name, cntctper.first_name);
 
-            var contactperson = contactsApi.GetContactPerson(contactPersonId);
-            Console.WriteLine("{0},{1},{2}", contactperson.contact_person_id, contactperson.last_name, contactperson.first_name);
-            var contactPerInfo = new ContactPerson()
-            {
-                contact_id = contactId,
-                first_name = "hk"
-            };
-            var newContactPer = contactsApi.CreateContactPerson(contactPerInfo);
-            Console.WriteLine("{0},{1},{2}", newContactPer.contact_person_id, newContactPer.last_name, newContactPer.first_name);
-            var updateInfo1 = new ContactPerson()
-            {
+            var contactperson = contactsApi.GetContactPerson(contacts[0].contact_id, contactPersonId);
+             Console.WriteLine("{0},{1},{2}", contactperson.contact_person_id, contactperson.last_name, contactperson.first_name);
+             var contactPerInfo = new ContactPerson()
+             {
+                 contact_id = "{contactId}",
+                 first_name = "hk"
+             };
+             var newContactPer = contactsApi.CreateContactPerson(contactPerInfo);
+             Console.WriteLine("{0},{1},{2}", newContactPer.contact_person_id, newContactPer.last_name, newContactPer.first_name);
+             var updateInfo1 = new ContactPerson()
+             {
                 
-                first_name = "fname"
-            };
-            var updated = contactsApi.UpdateContactperson(contactPersonId, updateInfo1);
-            Console.WriteLine("{0},{1},{2}", updated.contact_person_id, updated.last_name, updated.first_name);
-            var deletedmsg = contactsApi.DeleteContactPerson(contactPersonId);
-            Console.WriteLine(deletedmsg);
+                 first_name = "fname"
+             };
+             var updated = contactsApi.UpdateContactperson(contactPersonId, updateInfo1);
+             Console.WriteLine("{0},{1},{2}", updated.contact_person_id, updated.last_name, updated.first_name);
+             var deletedmsg = contactsApi.DeleteContactPerson(contactPersonId);
+             Console.WriteLine(deletedmsg);
 
-            var makeAsPrimary = contactsApi.MarkAsPrimaryContactPerson(contactPersonId);
-            Console.WriteLine(makeAsPrimary);
+             var makeAsPrimary = contactsApi.MarkAsPrimaryContactPerson(contactPersonId);
+             Console.WriteLine(makeAsPrimary);
             Console.ReadKey();
         }
     }

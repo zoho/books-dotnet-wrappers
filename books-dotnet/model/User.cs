@@ -86,5 +86,25 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The created_time.</value>
         public string created_time { get; set; }
+        /// <summary>
+        /// Gets or sets the photo_url.
+        /// </summary>
+        /// <value>The photo_url.</value>
+        public string photo_url { get; set; }
+        /// <summary>
+        /// Gets or sets the billable_hours.
+        /// </summary>
+        /// <value>The billable_hours.</value>
+        public string billable_hours { get; set; }
+        /// <summary>
+        /// Gets or sets the non_billable_hours.
+        /// </summary>
+        /// <value>The non_billable_hours.</value>
+        public string non_billable_hours { get; set; }
+        /// <summary>
+        /// Gets or sets the project_id.
+        /// </summary>
+        /// <value>The project_id.</value>
+        public string project_id { get; set; }
     }
 }

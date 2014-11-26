@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using zohobooks.model;
 
-namespace zohobooks.Parser
+namespace zohobooks.parser
 {
     /// <summary>
     /// Used to define the parser object of ExpensesApi.

@@ -30,6 +30,6 @@ namespace zohobooks.model
         /// Gets or sets the value.
         /// </summary>
         /// <value>The value.</value>
-        public string value { get; set; }
+        public object value { get; set; }
     }
 }

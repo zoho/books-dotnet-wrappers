@@ -7,7 +7,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
 
-namespace zohobooks.Parser
+namespace zohobooks.parser
 {
     /// <summary>
     /// Used to define the parser object of SettingsApi.
@@ -171,7 +171,89 @@ namespace zohobooks.Parser
                 placeHolders = JsonConvert.DeserializeObject<PlaceHolders>(jsonObj["placeholders"].ToString());
                 reminderAndPlaceHolders.placeholders = placeHolders;
             }
+            if (jsonObj.ContainsKey("show_org_address_as_one_field"))
+            {
+                reminderAndPlaceHolders.show_org_address_as_one_field = (bool)jsonObj["show_org_address_as_one_field"];
+            }
             return reminderAndPlaceHolders;
+        }
+
+        internal static AutoReminder getAutoReminder(HttpResponseMessage response)
+        {
+            var autoReminder = new AutoReminder();
+            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string,object>>(response.Content.ReadAsStringAsync().Result);
+            if(jsonObj.ContainsKey("autoreminder"))
+            {
+                autoReminder = JsonConvert.DeserializeObject<AutoReminder>(jsonObj["autoreminder"].ToString());
+            }
+            return autoReminder;
+        }
+
+        internal static ManualReminder getManualReminder(HttpResponseMessage response)
+        {
+            var manualReminder = new ManualReminder();
+            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+            if (jsonObj.ContainsKey("manualreminder"))
+            {
+                manualReminder = JsonConvert.DeserializeObject<ManualReminder>(jsonObj["manualreminder"].ToString());
+            }
+            return manualReminder;
+        }
+
+        internal static TaxAuthorityList getTaxAuthorityList(HttpResponseMessage response)
+        {
+            var taxAuthorityList = new TaxAuthorityList();
+            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+            if (jsonObj.ContainsKey("tax_authorities"))
+            {
+                var taxAuthorityArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["tax_authorities"].ToString());
+                foreach(var taxAuthorityObj in taxAuthorityArray)
+                {
+                    var taxAuthority = new TaxAuthority();
+                    taxAuthority = JsonConvert.DeserializeObject<TaxAuthority>(taxAuthorityObj.ToString());
+                    taxAuthorityList.Add(taxAuthority);
+                }
+            }
+            return taxAuthorityList;
+        }
+
+        internal static TaxAuthority getTaxAuthority(HttpResponseMessage response)
+        {
+            var taxAuthority = new TaxAuthority();
+            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+            if (jsonObj.ContainsKey("tax_authority"))
+            {
+                taxAuthority = JsonConvert.DeserializeObject<TaxAuthority>(jsonObj["tax_authority"].ToString());
+            }
+            return taxAuthority;
+        }
+
+        internal static TaxExemptionList getTaxExemptionList(HttpResponseMessage response)
+        {
+            var taxExemptionList = new TaxExemptionList();
+            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+            if (jsonObj.ContainsKey("tax_exemptions"))
+            {
+                var taxExemptionArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["tax_exemptions"].ToString());
+                foreach(var taxExemptionObj in taxExemptionArray)
+                {
+                    var taxExemption = new TaxExemption();
+                    taxExemption = JsonConvert.DeserializeObject<TaxExemption>(taxExemptionObj.ToString());
+                    taxExemptionList.Add(taxExemption);
+                }
+            }
+            return taxExemptionList;
+        }
+
+        internal static TaxExemption getTaxExemption(HttpResponseMessage response)
+        {
+            var taxExemption = new TaxExemption();
+            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+            if (jsonObj.ContainsKey("tax_exemption"))
+            {
+                taxExemption = JsonConvert.DeserializeObject<TaxExemption>(jsonObj["tax_exemption"].ToString());
+            }
+            return taxExemption;
         }
     }
 }

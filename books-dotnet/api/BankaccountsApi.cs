@@ -10,8 +10,8 @@ using System.Diagnostics;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.IO;
-using zohobooks.Util;
-using zohobooks.Parser;
+using zohobooks.util;
+using zohobooks.parser;
 using zohobooks.api;
 
 namespace zohobooks.api

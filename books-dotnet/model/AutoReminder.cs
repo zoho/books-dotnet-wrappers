@@ -71,5 +71,20 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The order.</value>
         public int order { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
+        public string name { get; set; }
+        /// <summary>
+        /// Gets or sets the number_of_days_after_invoice_date.
+        /// </summary>
+        /// <value>The number_of_days_after_invoice_date.</value>
+        public int number_of_days_after_invoice_date { get; set; }
+        /// <summary>
+        /// Gets or sets the cc_addresses.
+        /// </summary>
+        /// <value>The cc_addresses.</value>
+        public string cc_addresses { get; set; }
     }
 }

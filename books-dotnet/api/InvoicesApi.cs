@@ -10,8 +10,8 @@ using System.Diagnostics;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.IO;
-using zohobooks.Util;
-using zohobooks.Parser;
+using zohobooks.util;
+using zohobooks.parser;
 
 
 namespace zohobooks.api
@@ -550,7 +550,7 @@ namespace zohobooks.api
         {
             string url = baseAddress + "/" + invoice_id + "/attachment";
             ZohoHttpClient.getFile(url, getQueryParameters());
-            return "the selected expense receipt is saved  directory";
+            return "the selected expense receipt is saved at home directory";
         }
 
 

@@ -184,9 +184,29 @@ namespace zohobooks.model
         public string recurring_bill_id { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Bill"/> is is_item_level_tax_calc.
+        /// Gets or sets a value indicating whether this <see cref="Bill" /> is is_item_level_tax_calc.
         /// </summary>
         /// <value><c>true</c> if is_item_level_tax_calc; otherwise, <c>false</c>.</value>
         public bool is_item_level_tax_calc { get; set; }
+        /// <summary>
+        /// Gets or sets the vendor_credit_bill_id.
+        /// </summary>
+        /// <value>The vendor_credit_bill_id.</value>
+        public string vendor_credit_bill_id { get; set; }
+        /// <summary>
+        /// Gets or sets the amount.
+        /// </summary>
+        /// <value>The amount.</value>
+        public double amount { get; set; }
+        /// <summary>
+        /// Gets or sets the vendor_credit_id.
+        /// </summary>
+        /// <value>The vendor_credit_id.</value>
+        public string vendor_credit_id { get; set; }
+        /// <summary>
+        /// Gets or sets the vendor_credit_number.
+        /// </summary>
+        /// <value>The vendor_credit_number.</value>
+        public string vendor_credit_number { get; set; }
     }
 }

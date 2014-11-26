@@ -16,7 +16,7 @@ namespace OrganizationApiTest
             try
             {
                 var service = new ZohoBooks();
-                service.initialize("{authtoken}", "{organisation id}");
+                service.initialize("{authtoken}", "{organization id}");
                 var organizationApi = service.GetOrganizationsApi();
                var organizationsList = organizationApi.GetOrganizations();
                var organizations = organizationsList;
@@ -30,8 +30,9 @@ namespace OrganizationApiTest
                 var newOrganizationInfo = new Organization()
                 {
                     name="org3",
-                    currency_code="USD",
-                    time_zone = "GMT+05:30"
+                    currency_code="INR",
+                    time_zone = "IST",
+                    address=new Address(){country="India"}
                 };
                 var newOrganization = organizationApi.Create(newOrganizationInfo);
                 Console.WriteLine("Organization Id:{0},\n name:{1},\n contact name:{2},\n email:{3}", newOrganization.organization_id, newOrganization.name, newOrganization.contact_name, newOrganization.email);
@@ -40,8 +41,8 @@ namespace OrganizationApiTest
                     name="Org2",
                     address = new Address()
                     {
-                        city="Hyderabad",
-                        state="Andhra",
+                        city="city",
+                        state="state",
                         country="India"
                     },
                 };
@@ -49,6 +50,16 @@ namespace OrganizationApiTest
                 Console.WriteLine("Organization Id:{0},\n name:{1},\n contact name:{2},\n email:{3}\n addr:{4}\n", updatedOrg.organization_id, updatedOrg.name, updatedOrg.contact_name, updatedOrg.email, updatedOrg.org_address);
                 var address = updatedOrg.address;
                 Console.WriteLine("Address:{0},{1},{2}", address.city, address.state, address.country);
+                var new_address_info = new Address()
+                {
+                    attention="hari",
+                };
+                var newAddress = organizationApi.AddOrganizationAddress(new_address_info);
+                var update_addr_info = new Address()
+                {
+                    attention = "krishna"
+                };
+                var updatedAddress = organizationApi.UpdateOrganizationAddress(newAddress.organization_address_id, update_addr_info);
             }
             catch(Exception e)
             {

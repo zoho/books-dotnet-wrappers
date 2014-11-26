@@ -31,7 +31,7 @@ namespace zohobooks.model
         /// <value>The email.</value>
         public string email { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Organization"/> is is_default_org.
+        /// Gets or sets a value indicating whether this <see cref="Organization" /> is is_default_org.
         /// </summary>
         /// <value><c>true</c> if is_default_org; otherwise, <c>false</c>.</value>
         public bool is_default_org { get; set; }
@@ -41,7 +41,7 @@ namespace zohobooks.model
         /// <value>The plan_type.</value>
         public int plan_type { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Organization"/> is tax_group_enabled.
+        /// Gets or sets a value indicating whether this <see cref="Organization" /> is tax_group_enabled.
         /// </summary>
         /// <value><c>true</c> if tax_group_enabled; otherwise, <c>false</c>.</value>
         public bool tax_group_enabled { get; set; }
@@ -81,7 +81,7 @@ namespace zohobooks.model
         /// <value>The time_zone.</value>
         public string time_zone { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Organization"/> is is_org_active.
+        /// Gets or sets a value indicating whether this <see cref="Organization" /> is is_org_active.
         /// </summary>
         /// <value><c>true</c> if is_org_active; otherwise, <c>false</c>.</value>
         public bool is_org_active { get; set; }
@@ -240,5 +240,61 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The value.</value>
         public string value { get; set; }
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>The source.</value>
+        public int source { get; set; }
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
+        /// <value>The version.</value>
+        public string version { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Organization"/> is is_trial_expired.
+        /// </summary>
+        /// <value><c>true</c> if is_trial_expired; otherwise, <c>false</c>.</value>
+        public bool is_trial_expired { get; set; }
+        /// <summary>
+        /// Gets or sets the role_id.
+        /// </summary>
+        /// <value>The role_id.</value>
+        public string role_id { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Organization"/> is is_trial_period_extended.
+        /// </summary>
+        /// <value><c>true</c> if is_trial_period_extended; otherwise, <c>false</c>.</value>
+        public bool is_trial_period_extended { get; set; }
+        /// <summary>
+        /// Gets or sets the custom_fields.
+        /// </summary>
+        /// <value>The custom_fields.</value>
+        public List<CustomField> custom_fields { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Organization"/> is is_new_customer_custom_fields.
+        /// </summary>
+        /// <value><c>true</c> if is_new_customer_custom_fields; otherwise, <c>false</c>.</value>
+        public bool is_new_customer_custom_fields { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Organization"/> is is_portal_enabled.
+        /// </summary>
+        /// <value><c>true</c> if is_portal_enabled; otherwise, <c>false</c>.</value>
+        public bool is_portal_enabled { get; set; }
+        /// <summary>
+        /// Gets or sets the portal_name.
+        /// </summary>
+        /// <value>The portal_name.</value>
+        public string portal_name { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Organization"/> is is_registered_for_tax.
+        /// </summary>
+        /// <value><c>true</c> if is_registered_for_tax; otherwise, <c>false</c>.</value>
+        bool is_registered_for_tax { get; set; }
+        /// <summary>
+        /// Gets or sets the tax_payment_period.
+        /// </summary>
+        /// <value>The tax_payment_period.</value>
+        string tax_payment_period { get; set; }
     }
 }

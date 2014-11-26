@@ -11,8 +11,8 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.IO;
 using zohobooks.exceptions;
-using zohobooks.Util;
-using zohobooks.Parser;
+using zohobooks.util;
+using zohobooks.parser;
 namespace zohobooks.api
 {
     /// <summary>

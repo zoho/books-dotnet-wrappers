@@ -111,6 +111,16 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The default_template_id.</value>
         public string default_template_id { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="InvoiceSettings"/> is warn_attach_expense_receipt.
+        /// </summary>
+        /// <value><c>true</c> if warn_attach_expense_receipt; otherwise, <c>false</c>.</value>
+        public bool warn_attach_expense_receipt { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="InvoiceSettings"/> is is_show_invoice_setup.
+        /// </summary>
+        /// <value><c>true</c> if is_show_invoice_setup; otherwise, <c>false</c>.</value>
+        public bool is_show_invoice_setup { get; set; }
     }
 
 }

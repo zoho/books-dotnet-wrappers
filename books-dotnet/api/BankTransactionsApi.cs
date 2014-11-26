@@ -8,9 +8,9 @@ using Newtonsoft.Json;
 using zohobooks.model;
 using System.Diagnostics;
 using System.Net.Http.Formatting;
-using zohobooks.Util;
+using zohobooks.util;
 using zohobooks.api;
-using zohobooks.Parser;
+using zohobooks.parser;
 
 namespace zohobooks.api
 {
@@ -159,7 +159,7 @@ namespace zohobooks.api
         public string UnmatchTransaction(string transaction_id)
         {
             string url = baseAddress + "/" + transaction_id + "/unmatch";
-            var responce = ZohoHttpClient.post(url, getQueryParameters());
+            var responce = ZohoHttpClient.post(url, getQueryParameters());;
             return BankTransactionParser.getMessage(responce);
         }
 
@@ -273,7 +273,7 @@ namespace zohobooks.api
             jsonstring.Add("JSONString", json);
             var attachment = new string[] { receipt_path };
             var file = new KeyValuePair<string, string[]>("receipt",attachment);
-            var responce = ZohoHttpClient.post(url, getQueryParameters(),jsonstring,file);
+            var responce = ZohoHttpClient.post(url, getQueryParameters(), jsonstring, file);
             return BankTransactionParser.getMessage(responce);
         }
         /// <summary>
@@ -286,6 +286,16 @@ namespace zohobooks.api
             string url = baseAddress + "/" + transaction_id + "/uncategorize";
             var responce = ZohoHttpClient.post(url, getQueryParameters());
             return BankTransactionParser.getMessage(responce);
+        }
+
+        public string CategorizeAsVendorCreditRefund(string transaction_id,VendorCreditRefund refund_details)
+        {
+            string url = baseAddress + "/uncategorized/" + transaction_id + "/categorize/vendorcreditrefunds";
+            var json = JsonConvert.SerializeObject(refund_details);
+            var parameters = new Dictionary<object, object>();
+            parameters.Add("JSONString", json);
+            var response = ZohoHttpClient.post(url, getQueryParameters(parameters));
+            return BankTransactionParser.getMessage(response);
         }
     }
 }

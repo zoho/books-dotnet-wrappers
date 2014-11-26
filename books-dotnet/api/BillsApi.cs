@@ -9,9 +9,9 @@ using zohobooks.model;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.IO;
-using zohobooks.Util;
+using zohobooks.util;
 using zohobooks.api;
-using zohobooks.Parser;
+using zohobooks.parser;
 
 namespace zohobooks.api
 {

@@ -55,6 +55,21 @@ namespace zohobooks.model
         /// Gets or sets a value indicating whether this <see cref="Address" /> is is_update_customer.
         /// </summary>
         /// <value><c>true</c> if is_update_customer; otherwise, <c>false</c>.</value>
-        public bool is_update_customer { get; set; }
+        public object is_update_customer { get; set; }
+        /// <summary>
+        /// Gets or sets the organization_address_id.
+        /// </summary>
+        /// <value>The organization_address_id.</value>
+        public string organization_address_id { get; set; }
+        /// <summary>
+        /// Gets or sets the attention.
+        /// </summary>
+        /// <value>The attention.</value>
+        public string attention { get; set; }
+        /// <summary>
+        /// Gets or sets the phone.
+        /// </summary>
+        /// <value>The phone.</value>
+        public string phone { get; set; }
     }
 }

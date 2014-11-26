@@ -51,5 +51,45 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The un_billed_hours.</value>
         public string un_billed_hours { get; set; }
+        /// <summary>
+        /// Gets or sets the billable_hours.
+        /// </summary>
+        /// <value>The billable_hours.</value>
+        public string billable_hours { get; set; }
+        /// <summary>
+        /// Gets or sets the non_billable_hours.
+        /// </summary>
+        /// <value>The non_billable_hours.</value>
+        public string non_billable_hours { get; set; }
+        /// <summary>
+        /// Gets or sets the project_id.
+        /// </summary>
+        /// <value>The project_id.</value>
+        public string project_id { get; set; }
+        /// <summary>
+        /// Gets or sets the currency_id.
+        /// </summary>
+        /// <value>The currency_id.</value>
+        public string currency_id { get; set; }
+        /// <summary>
+        /// Gets or sets the customer_id.
+        /// </summary>
+        /// <value>The customer_id.</value>
+        public string customer_id { get; set; }
+        /// <summary>
+        /// Gets or sets the project_name.
+        /// </summary>
+        /// <value>The project_name.</value>
+        public string project_name { get; set; }
+        /// <summary>
+        /// Gets or sets the customer_name.
+        /// </summary>
+        /// <value>The customer_name.</value>
+        public string customer_name { get; set; }
+        /// <summary>
+        /// Gets or sets the log_time.
+        /// </summary>
+        /// <value>The log_time.</value>
+        public string log_time { get; set; }
     }
 }

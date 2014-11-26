@@ -75,7 +75,7 @@ namespace zohobooks.model
         /// Gets or sets the taxes.
         /// </summary>
         /// <value>The taxes.</value>
-        public List<object> taxes { get; set; }
+        public List<Tax> taxes { get; set; }
         /// <summary>
         /// Gets or sets the created_time.
         /// </summary>
@@ -86,5 +86,15 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The last_modified_time.</value>
         public string last_modified_time { get; set; }
+        /// <summary>
+        /// Gets or sets the journal_type.
+        /// </summary>
+        /// <value>The journal_type.</value>
+        public string journal_type { get; set; }
+        /// <summary>
+        /// Gets or sets the entity_type.
+        /// </summary>
+        /// <value>The entity_type.</value>
+        public string entity_type { get; set; }
     }
 }

@@ -10,8 +10,9 @@ using System.IO;
 using System.Diagnostics;
 using zohobooks.exceptions;
 using zohobooks.model;
+using zohobooks.parser;
 
-namespace zohobooks.Util
+namespace zohobooks.util
 {
     /// <summary>
     /// Class ZohoHttpClient.
@@ -61,7 +62,7 @@ namespace zohobooks.Util
             if (responce.IsSuccessStatusCode)
                 return responce;
             else
-                throw new BooksException(responce.Content.ReadAsAsync<ExceptionModel>().Result.message);
+                throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace zohobooks.Util
             if (responce.IsSuccessStatusCode)
                 return responce;
             else
-                throw new BooksException(responce.Content.ReadAsAsync<ExceptionModel>().Result.message);
+                throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace zohobooks.Util
             if (responce.IsSuccessStatusCode)
                 return responce;
             else
-                throw new BooksException(responce.Content.ReadAsAsync<ExceptionModel>().Result.message);
+                throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
@@ -146,7 +147,7 @@ namespace zohobooks.Util
             if (responce.IsSuccessStatusCode)
                 return responce;
             else
-                throw new BooksException(responce.Content.ReadAsAsync<ExceptionModel>().Result.message);
+                throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
@@ -177,7 +178,7 @@ namespace zohobooks.Util
             if (responce.IsSuccessStatusCode)
                 return responce;
             else
-                throw new BooksException(responce.Content.ReadAsAsync<ExceptionModel>().Result.message);
+                throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
 
@@ -195,7 +196,7 @@ namespace zohobooks.Util
             if (responce.IsSuccessStatusCode)
                 return responce;
             else
-                throw new BooksException(responce.Content.ReadAsAsync<ExceptionModel>().Result.message);
+                throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
          /// <summary>
@@ -220,10 +221,10 @@ namespace zohobooks.Util
                 responce.Content.CopyToAsync(fileStream);
                 fileStream.Close();
                 Process.Start(filename);
-
             }
             else
-                throw new BooksException(responce.Content.ReadAsAsync<ExceptionModel>().Result.message);
+                throw new BooksException(ErrorParser.getErrorMessage(responce));
          }
+
     }
 }

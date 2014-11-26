@@ -121,5 +121,20 @@ namespace zohobooks.model
         /// </summary>
         /// <value><c>true</c> if is_current_user; otherwise, <c>false</c>.</value>
         public bool is_current_user { get; set; }
+        /// <summary>
+        /// Gets or sets the salesorder_id.
+        /// </summary>
+        /// <value>The salesorder_id.</value>
+        public string salesorder_id { get; set; }
+        /// <summary>
+        /// Gets or sets the purchaseorder_id.
+        /// </summary>
+        /// <value>The purchaseorder_id.</value>
+        public string purchaseorder_id { get; set; }
+        /// <summary>
+        /// Gets or sets the vendor_credit_id.
+        /// </summary>
+        /// <value>The vendor_credit_id.</value>
+        public string vendor_credit_id { get; set; }
     }
 }

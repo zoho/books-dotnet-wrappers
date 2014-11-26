@@ -16,7 +16,7 @@ namespace ItemsApitest
             try
             {
                 var service = new ZohoBooks();
-                service.initialize("{authtoken}", "{organisation id}");
+                service.initialize("{authtoken}", "{organization id}");
                 var itemsApi = service.GetItemsApi();
                 var parameters = new Dictionary<object, object>();
                 var itemsList = itemsApi.GetItems(parameters);
@@ -28,18 +28,18 @@ namespace ItemsApitest
                 Console.WriteLine("Item id:{0},\nName:{1},\ndescription:{2},\nRate:{3}\n", item1.item_id, item1.name, item1.description, item1.rate);
                 var newItemInfo = new LineItem()
                 {
-                    name="computer hardware1",
+                    name="computer hardware21",
                     rate=1500
                 };
-                //var newItem = itemsApi.Create(newItemInfo);
-                //Console.WriteLine("Item id:{0},\nName:{1},\ndescription:{2},\nRate:{3}\n", newItem.item_id, newItem.name, newItem.description, newItem.rate);
+                var newItem = itemsApi.Create(newItemInfo);
+                Console.WriteLine("Item id:{0},\nName:{1},\ndescription:{2},\nRate:{3}\n", newItem.item_id, newItem.name, newItem.description, newItem.rate);
                 var updateInfo = new LineItem()
                 {
                     description = "ram of 1gb"
                 };
-                var updatedItem = itemsApi.Update(itemId, updateInfo);
+                var updatedItem = itemsApi.Update(newItem.item_id, updateInfo);
                 Console.WriteLine("Item id:{0},\nName:{1},\ndescription:{2},\nRate:{3}\n", updatedItem.item_id, updatedItem.name, updatedItem.description, updatedItem.rate);
-                var deleteMsg = itemsApi.Delete(items[4].item_id);
+                var deleteMsg = itemsApi.Delete(updatedItem.item_id);
                 Console.WriteLine(deleteMsg);
                 var inactiveMsg = itemsApi.MarkAsInactive(itemId);
                 Console.WriteLine(inactiveMsg);

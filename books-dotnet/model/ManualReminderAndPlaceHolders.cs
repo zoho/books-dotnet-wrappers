@@ -30,5 +30,10 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The placeholders.</value>
         public PlaceHolders placeholders { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="ManualReminderAndPlaceHolders"/> is show_org_address_as_one_field.
+        /// </summary>
+        /// <value><c>true</c> if show_org_address_as_one_field; otherwise, <c>false</c>.</value>
+        public bool show_org_address_as_one_field { get; set; }
     }
 }

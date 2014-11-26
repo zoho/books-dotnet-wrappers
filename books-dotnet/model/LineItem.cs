@@ -105,7 +105,7 @@ namespace zohobooks.model
         /// Gets or sets the tax_percentage.
         /// </summary>
         /// <value>The tax_percentage.</value>
-        public string tax_percentage { get; set; }
+        public double tax_percentage { get; set; }
         /// <summary>
         /// Gets or sets the item_total.
         /// </summary>
@@ -141,5 +141,51 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The status.</value>
         public string status { get; set; }
+        /// <summary>
+        /// Gets or sets the tax_authority_id.(US Edition only)
+        /// </summary>
+        /// <value>The tax_authority_id.</value>
+        public string tax_authority_id { get; set; }
+        /// <summary>
+        /// Gets or sets the tax_exemption_id.(US Edition only)
+        /// </summary>
+        /// <value>The tax_exemption_id.</value>
+        public string tax_exemption_id { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="LineItem"/> is is_invoiced.
+        /// </summary>
+        /// <value><c>true</c> if is_invoiced; otherwise, <c>false</c>.</value>
+        public bool is_invoiced { get; set; }
+        /// <summary>
+        /// Gets or sets the tags.
+        /// </summary>
+        /// <value>The tags.</value>
+        public List<string> tags { get; set; }
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>The source.</value>
+        public string source { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="LineItem"/> is is_linked_with_zohocrm.
+        /// </summary>
+        /// <value><c>true</c> if is_linked_with_zohocrm; otherwise, <c>false</c>.</value>
+        public bool is_linked_with_zohocrm { get; set; }
+        /// <summary>
+        /// Gets or sets the pricebook_rate.
+        /// </summary>
+        /// <value>The pricebook_rate.</value>
+        public double pricebook_rate { get; set; }
+        /// <summary>
+        /// (US edition only)
+        /// Gets or sets a value indicating whether this <see cref="LineItem" /> is is_taxable.
+        /// </summary>
+        /// <value><c>true</c> if is_taxable; otherwise, <c>false</c>.</value>
+        public bool is_taxable { get; set; }
+        /// <summary>
+        /// Gets or sets the stock_on_hand.
+        /// </summary>
+        /// <value>The stock_on_hand.</value>
+        public string stock_on_hand { get; set; }
     }
 }

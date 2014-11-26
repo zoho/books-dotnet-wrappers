@@ -5,23 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using zohobooks.model;
-using zohobooks.Util;
+using zohobooks.util;
 using Newtonsoft.Json;
-using zohobooks.Parser;
+using zohobooks.parser;
 
 namespace zohobooks.api
 {
     /// <summary>
     /// Class OrganizationsApi is used to<br></br>
-    ///     Create a new organization,<br></br>
-    ///     Get and update of the organization details,<br></br>
-    ///     Get the list of organizations for the user.<br></br>
+    /// Create a new organization,<br></br>
+    /// Get and update of the organization details,<br></br>
+    /// Get the list of organizations for the user.<br></br>
     /// </summary>
     public class OrganizationsApi:Api
     {
+        /// <summary>
+        /// The base address
+        /// </summary>
         static string baseAddress =baseurl + "/organizations";
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrganizationsApi"/> class.
+        /// Initializes a new instance of the <see cref="OrganizationsApi" /> class.
         /// </summary>
         /// <param name="auth_token">The auth_token is used for the authentication purpose.</param>
         /// <param name="organization_Id">The organization_ identifier is used to define the current working organisation.</param>
@@ -65,6 +68,7 @@ namespace zohobooks.api
             var jsonstring = new Dictionary<object, object>();
             jsonstring.Add("JSONString", json);
             var responce = ZohoHttpClient.post(url, getQueryParameters(jsonstring));
+            Console.WriteLine(responce.Content.ReadAsStringAsync().Result);
             return OrganizationParser.getOrganization(responce);
         }
 
@@ -82,6 +86,35 @@ namespace zohobooks.api
             jsonstring.Add("JSONString", json);
             var responce = ZohoHttpClient.put(url, getQueryParameters(jsonstring));
             return OrganizationParser.getOrganization(responce);
+        }
+        /// <summary>
+        /// Adds the organization address.
+        /// </summary>
+        /// <param name="address_info">The address_info.</param>
+        /// <returns>Address.</returns>
+        public Address AddOrganizationAddress(Address address_info)
+        {
+            string url = baseAddress + "/address";
+            var json = JsonConvert.SerializeObject(address_info);
+            var jsonstring = new Dictionary<object, object>();
+            jsonstring.Add("JSONString", json);
+            var responce = ZohoHttpClient.post(url, getQueryParameters(jsonstring));
+            return OrganizationParser.getOrganizationAddress(responce);
+        }
+        /// <summary>
+        /// Updates the organization address.
+        /// </summary>
+        /// <param name="organization_address_id">The organization_address_id.</param>
+        /// <param name="update_info">The update_info.</param>
+        /// <returns>Address.</returns>
+        public Address UpdateOrganizationAddress(string organization_address_id,Address update_info)
+        {
+            string url = baseAddress + "/address/" + organization_address_id;
+            var json = JsonConvert.SerializeObject(update_info);
+            var jsonstring = new Dictionary<object, object>();
+            jsonstring.Add("JSONString", json);
+            var responce = ZohoHttpClient.put(url, getQueryParameters(jsonstring));
+            return OrganizationParser.getOrganizationAddress(responce);
         }
     }
 }

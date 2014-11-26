@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using zohobooks.model;
-using zohobooks.Util;
+using zohobooks.util;
 using Newtonsoft.Json;
 using System.Net.Http;
-using zohobooks.Parser;
+using zohobooks.parser;
 
 namespace zohobooks.api
 {

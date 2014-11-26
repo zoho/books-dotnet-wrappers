@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using zohobooks.model;
 using Newtonsoft.Json.Linq;
 
-namespace zohobooks.Parser
+namespace zohobooks.parser
 {
     /// <summary>
     /// Used to define the parser object of BillsApi.

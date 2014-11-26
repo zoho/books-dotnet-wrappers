@@ -101,5 +101,15 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The budget_amount.</value>
         public string budget_amount { get; set; }
+        /// <summary>
+        /// Gets or sets the billable_hours.
+        /// </summary>
+        /// <value>The billable_hours.</value>
+        public string billable_hours { get; set; }
+        /// <summary>
+        /// Gets or sets the non_billable_hours.
+        /// </summary>
+        /// <value>The non_billable_hours.</value>
+        public string non_billable_hours { get; set; }
     }
 }

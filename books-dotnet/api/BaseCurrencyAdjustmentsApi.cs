@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
 using Newtonsoft.Json;
+using zohobooks.util;
 using zohobooks.model;
-using System.Diagnostics;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
-using System.IO;
-using zohobooks.Util;
-using zohobooks.api;
-using zohobooks.Parser;
+using zohobooks.parser;
 
 namespace zohobooks.api
 {

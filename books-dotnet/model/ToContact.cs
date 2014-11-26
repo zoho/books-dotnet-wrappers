@@ -20,7 +20,7 @@ namespace zohobooks.model
         /// Gets or sets a value indicating whether this <see cref="ToContact" /> is __invalid_name__selected.
         /// </summary>
         /// <value><c>true</c> if __invalid_name__selected; otherwise, <c>false</c>.</value>
-        public bool __invalid_name__selected { get; set; }
+        public bool selected { get; set; }
         /// <summary>
         /// Gets or sets the phone.
         /// </summary>
@@ -51,15 +51,5 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The mobile.</value>
         public string mobile { get; set; }
-        /// <summary>
-        /// Gets or sets the __invalid_name__first_name.
-        /// </summary>
-        /// <value>The __invalid_name__first_name.</value>
-        public string __invalid_name__first_name { get; set; }
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="ToContact" /> is selected.
-        /// </summary>
-        /// <value><c>null</c> if [selected] contains no value, <c>true</c> if [selected]; otherwise, <c>false</c>.</value>
-        public bool? selected { get; set; }
     }
 }

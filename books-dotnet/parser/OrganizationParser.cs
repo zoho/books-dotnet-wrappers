@@ -7,7 +7,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
 
-namespace zohobooks.Parser
+namespace zohobooks.parser
 {
     /// <summary>
     /// Used to define the parser object of OrganizationsApi.
@@ -61,6 +61,17 @@ namespace zohobooks.Parser
                 organization = JsonConvert.DeserializeObject<Organization>(jsonObj["organization"].ToString());
             }
             return organization;
+        }
+
+        internal static Address getOrganizationAddress(HttpResponseMessage responce)
+        {
+            var address = new Address();
+            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            if(jsonObj.ContainsKey("organization_address"))
+            {
+                address = JsonConvert.DeserializeObject<Address>(jsonObj["organization_address"].ToString());
+            }
+            return address;
         }
     }
 }

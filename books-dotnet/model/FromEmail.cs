@@ -26,5 +26,10 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The email.</value>
         public string email { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="FromEmail"/> is is_org_email_id.
+        /// </summary>
+        /// <value><c>true</c> if is_org_email_id; otherwise, <c>false</c>.</value>
+        public bool is_org_email_id { get; set; }
     }
 }

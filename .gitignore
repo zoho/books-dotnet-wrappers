@@ -1,0 +1,8 @@
+/packages/*
+/books-dotnet/bin
+/books-dotnet/obj
+/books-dotnet/documentation
+/*.xml
+/test/*/*.xml
+/test/*/*/bin
+/test/*/*/obj

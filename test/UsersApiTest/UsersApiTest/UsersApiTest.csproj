@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="books-dotnet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\books-dotnet-wrappers\books-dotnet\bin\Debug\books-dotnet.dll</HintPath>
+      <HintPath>C:\Users\hari-2197\books-dotnet-wrappers\books-dotnet\bin\Debug\books-dotnet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

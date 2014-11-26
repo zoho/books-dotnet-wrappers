@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace zohobooks.api
 {
@@ -27,9 +28,11 @@ namespace zohobooks.api
                 Formatting = Formatting.Indented,
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore
+                DefaultValueHandling = DefaultValueHandling.Ignore,
             };
+            
         }
+        
         /// <summary>
         /// The authtoken is the authentication parameter which authenticates the API call.
         /// </summary>

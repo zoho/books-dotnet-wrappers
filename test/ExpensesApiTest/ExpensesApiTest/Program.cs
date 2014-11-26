@@ -43,7 +43,7 @@ namespace ExpensesApiTest
                     paid_through_account_id = paidAccId,
                     amount = 24567.00
                 };
-                var newExpense = expensesApi.Create(newExpenseInfo, @"C:\Users\hari-pt117\Desktop\error.png");
+                var newExpense = expensesApi.Create(newExpenseInfo, @"C:\Users\....\.png");
                 if (newExpense != null)
                     Console.WriteLine("{0},{1},{2}", newExpense.expense_id, newExpense.total, newExpense.account_name);
                 var updateInfo = new Expense

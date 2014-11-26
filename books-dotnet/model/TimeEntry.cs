@@ -124,5 +124,20 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The start_timer.</value>
         public string start_timer { get; set; }
+        /// <summary>
+        /// Gets or sets the begin_time.
+        /// </summary>
+        /// <value>The begin_time.</value>
+        public string begin_time { get; set; }
+        /// <summary>
+        /// Gets or sets the end_time.
+        /// </summary>
+        /// <value>The end_time.</value>
+        public string end_time { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="TimeEntry"/> is is_billable.
+        /// </summary>
+        /// <value><c>true</c> if is_billable; otherwise, <c>false</c>.</value>
+        public bool is_billable { get; set; }
     }
 }

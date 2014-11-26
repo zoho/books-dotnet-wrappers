@@ -12,7 +12,13 @@ namespace zohobooks.service
     /// </summary>
     public class ZohoBooks
     {
+        /// <summary>
+        /// The authentication token
+        /// </summary>
         string authToken;
+        /// <summary>
+        /// The organisation identifier
+        /// </summary>
         string organisationId;
         /// <summary>
         /// Initialize ZohoBooks using user's authtoken and organization id.
@@ -212,6 +218,34 @@ namespace zohobooks.service
         {
             var vendorPaymentsApi = new VendorPaymentsApi(authToken, organisationId);
             return vendorPaymentsApi;
+        }
+        /// <summary>
+        /// Gets an instance of salesorders API.
+        /// </summary>
+        /// <returns>SalesordersApi.</returns>
+        public SalesordersApi GetSalesordersApi()
+        {
+            var salesordersApi = new SalesordersApi(authToken, organisationId);
+            return salesordersApi;
+        }
+        /// <summary>
+        /// Gets the purchaseorders API.
+        /// </summary>
+        /// <returns>PurchaseordersApi.</returns>
+        public PurchaseordersApi GetPurchaseordersApi()
+        {
+            var purchaseordersApi = new PurchaseordersApi(authToken, organisationId);
+            return purchaseordersApi;
+        }
+
+        /// <summary>
+        /// Gets the vendor credits API.
+        /// </summary>
+        /// <returns>VendorCreditsApi.</returns>
+        public VendorCreditsApi GetVendorCreditsApi()
+        {
+            var vendorCreditsApi = new VendorCreditsApi(authToken, organisationId);
+            return vendorCreditsApi;
         }
     }
 }
