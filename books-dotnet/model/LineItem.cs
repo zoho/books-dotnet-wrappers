@@ -187,5 +187,6 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The stock_on_hand.</value>
         public string stock_on_hand { get; set; }
+        public List<CustomField> custom_fields { get; set; }
     }
 }
