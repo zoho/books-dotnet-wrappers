@@ -74,14 +74,16 @@ namespace zohobooks.util
         /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
         public static HttpResponseMessage post(string url,Dictionary<object,object> requestBody)
         {
+            Console.WriteLine("ZohoHttpClient.post:{0}", url);
             var client = getClient();
             List<KeyValuePair<string,string>> contentBody=new List<KeyValuePair<string,string>>();
             foreach (var requestbodyParam in requestBody)
             {
+                Console.WriteLine("{0} => {1}", requestbodyParam.Key.ToString(), requestbodyParam.Value.ToString());
                 var temp = new KeyValuePair<string, string>(requestbodyParam.Key.ToString(), requestbodyParam.Value.ToString());
                 contentBody.Add(temp);
             }
-            var content = new FormUrlEncodedContent(contentBody);
+            var content = new ZohoFormUrlEncodedContent(contentBody);
             var responce= client.PostAsync(url,content).Result;
             if (responce.IsSuccessStatusCode)
                 return responce;
