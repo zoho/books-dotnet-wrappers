@@ -60,7 +60,7 @@ namespace zohobooks.model
         /// Gets or sets the time_entry_ids.
         /// </summary>
         /// <value>The time_entry_ids.</value>
-        public string time_entry_ids { get; set; }
+        public List<string> time_entry_ids { get; set; }
         /// <summary>
         /// Gets or sets the expense_id.
         /// </summary>
