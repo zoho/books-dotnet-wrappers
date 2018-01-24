@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
@@ -10,15 +6,15 @@ using zohobooks.model;
 namespace zohobooks.parser
 {
     /// <summary>
-    /// Used to define the parser object of ProjectsApi.
+    ///     Used to define the parser object of ProjectsApi.
     /// </summary>
-    class ProjectParser
+    internal class ProjectParser
     {
-
         internal static string getMessage(HttpResponseMessage responce)
         {
-            string message = "";
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var message = "";
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("message"))
                 message = jsonObj["message"].ToString();
             return message;
@@ -27,11 +23,12 @@ namespace zohobooks.parser
         internal static ProjectsList getProjectsList(HttpResponseMessage responce)
         {
             var projectList = new ProjectsList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("projects"))
             {
                 var projectsArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["projects"].ToString());
-                foreach(var projectObj in projectsArray)
+                foreach (var projectObj in projectsArray)
                 {
                     var project = new Project();
                     project = JsonConvert.DeserializeObject<Project>(projectObj.ToString());
@@ -50,22 +47,22 @@ namespace zohobooks.parser
         internal static Project getProject(HttpResponseMessage responce)
         {
             var project = new Project();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("project"))
-            {
                 project = JsonConvert.DeserializeObject<Project>(jsonObj["project"].ToString());
-            }
             return project;
         }
 
         internal static TaskList gatTaskList(HttpResponseMessage responce)
         {
             var taskList = new TaskList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("task"))
             {
                 var tasksArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["task"].ToString());
-                foreach(var taskObj in tasksArray)
+                foreach (var taskObj in tasksArray)
                 {
                     var task = new ProjectTask();
                     task = JsonConvert.DeserializeObject<ProjectTask>(taskObj.ToString());
@@ -84,22 +81,22 @@ namespace zohobooks.parser
         internal static ProjectTask gettask(HttpResponseMessage responce)
         {
             var task = new ProjectTask();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("task"))
-            {
                 task = JsonConvert.DeserializeObject<ProjectTask>(jsonObj["task"].ToString());
-            }
             return task;
         }
 
         internal static UserList getUserList(HttpResponseMessage responce)
         {
             var userList = new UserList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("users"))
             {
                 var usersArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["users"].ToString());
-                foreach(var userObj in usersArray)
+                foreach (var userObj in usersArray)
                 {
                     var user = new User();
                     user = JsonConvert.DeserializeObject<User>(userObj.ToString());
@@ -118,22 +115,22 @@ namespace zohobooks.parser
         internal static User getUser(HttpResponseMessage responce)
         {
             var user = new User();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("user"))
-            {
                 user = JsonConvert.DeserializeObject<User>(jsonObj["user"].ToString());
-            }
             return user;
         }
 
         internal static TimeEntryList getTimeEntrieslist(HttpResponseMessage responce)
         {
             var timeEntryList = new TimeEntryList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("time_entries"))
             {
                 var timeEntriesArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["time_entries"].ToString());
-                foreach(var timeEntryObj in timeEntriesArray)
+                foreach (var timeEntryObj in timeEntriesArray)
                 {
                     var timeEntry = new TimeEntry();
                     timeEntry = JsonConvert.DeserializeObject<TimeEntry>(timeEntryObj.ToString());
@@ -152,11 +149,10 @@ namespace zohobooks.parser
         internal static TimeEntry getTimeEntry(HttpResponseMessage responce)
         {
             var timeEntry = new TimeEntry();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("time_entry"))
-            {
                 timeEntry = JsonConvert.DeserializeObject<TimeEntry>(jsonObj["time_entry"].ToString());
-            }
             return timeEntry;
         }
     }

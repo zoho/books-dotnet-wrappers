@@ -1,60 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace zohobooks.model
+﻿namespace zohobooks.model
 {
     /// <summary>
-    /// Class Currency.
+    ///     Class Currency.
     /// </summary>
     public class Currency
     {
         /// <summary>
-        /// Gets or sets the currency_id.
+        ///     Gets or sets the currency_id.
         /// </summary>
         /// <value>The currency_id.</value>
         public string currency_id { get; set; }
+
         /// <summary>
-        /// Gets or sets the currency_code.
+        ///     Gets or sets the currency_code.
         /// </summary>
         /// <value>The currency_code.</value>
         public string currency_code { get; set; }
+
         /// <summary>
-        /// Gets or sets the currency_name.
+        ///     Gets or sets the currency_name.
         /// </summary>
         /// <value>The currency_name.</value>
         public string currency_name { get; set; }
+
         /// <summary>
-        /// Gets or sets the currency_symbol.
+        ///     Gets or sets the currency_symbol.
         /// </summary>
         /// <value>The currency_symbol.</value>
         public string currency_symbol { get; set; }
+
         /// <summary>
-        /// Gets or sets the price_precision.
+        ///     Gets or sets the price_precision.
         /// </summary>
         /// <value>The price_precision.</value>
         public int price_precision { get; set; }
+
         /// <summary>
-        /// Gets or sets the currency_format.
+        ///     Gets or sets the currency_format.
         /// </summary>
         /// <value>The currency_format.</value>
         public string currency_format { get; set; }
+
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Currency"/> is is_base_currency.
+        ///     Gets or sets a value indicating whether this <see cref="Currency" /> is is_base_currency.
         /// </summary>
         /// <value><c>true</c> if is_base_currency; otherwise, <c>false</c>.</value>
         public bool is_base_currency { get; set; }
+
         /// <summary>
-        /// Gets or sets the exchange_rate.
+        ///     Gets or sets the exchange_rate.
         /// </summary>
         /// <value>The exchange_rate.</value>
         public double exchange_rate { get; set; }
+
         /// <summary>
-        /// Gets or sets the effective_date.
+        ///     Gets or sets the effective_date.
         /// </summary>
         /// <value>The effective_date.</value>
         public string effective_date { get; set; }
-        
     }
 }

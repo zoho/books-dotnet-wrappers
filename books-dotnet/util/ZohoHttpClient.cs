@@ -1,43 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Web;
-using Newtonsoft.Json;
-using System.IO;
-using System.Diagnostics;
 using zohobooks.exceptions;
-using zohobooks.model;
 using zohobooks.parser;
 
 namespace zohobooks.util
 {
     /// <summary>
-    /// Class ZohoHttpClient.
+    ///     Class ZohoHttpClient.
     /// </summary>
-      class ZohoHttpClient
+    internal class ZohoHttpClient
     {
         /// <summary>
-        /// Gets the client.
+        ///     Gets the client.
         /// </summary>
         /// <returns>HttpClient object.</returns>
-        static HttpClient getClient()
-          {
-              HttpClient client = new HttpClient();
-              client.Timeout = new TimeSpan(0, 0, 60);
-              client.DefaultRequestHeaders.Add("Accept-Charset", "UTF-8");
-              client.DefaultRequestHeaders.Add("User-Agent", "ZohoBooks-dotnet-Wrappers/1.0");
-              return client;
-          } 
-         /// <summary>
-         /// Make a query string from the given parameters.
-         /// </summary>
-         /// <param name="url">Service URL passed by the user.</param>
-         /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
-         /// <returns> Returns the Query String</returns>
-         static string getQueryString(string url,Dictionary<object,object> parameters)
+        private static HttpClient getClient()
+        {
+            var client = new HttpClient();
+            client.Timeout = new TimeSpan(0, 0, 60);
+            client.DefaultRequestHeaders.Add("Accept-Charset", "UTF-8");
+            client.DefaultRequestHeaders.Add("User-Agent", "ZohoBooks-dotnet-Wrappers/1.0");
+            return client;
+        }
+
+        /// <summary>
+        ///     Make a query string from the given parameters.
+        /// </summary>
+        /// <param name="url">Service URL passed by the user.</param>
+        /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
+        /// <returns> Returns the Query String</returns>
+        private static string getQueryString(string url, Dictionary<object, object> parameters)
         {
             var ub = new UriBuilder(url);
             var param = HttpUtility.ParseQueryString(ub.Query);
@@ -47,50 +43,49 @@ namespace zohobooks.util
             return ub.ToString();
         }
 
-         /// <summary>
-         /// Makes a GET request and fetch the responce for the given URL and Query Parameters.
-         /// </summary>
-         /// <param name="url">Service URL passed by the user.</param>
-         /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
-         /// <returns>HttpResponseMessage which contains the data in the form of JSON .</returns>
-         /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
-        public static HttpResponseMessage get(string url, Dictionary<object,object> parameters)
+        /// <summary>
+        ///     Makes a GET request and fetch the responce for the given URL and Query Parameters.
+        /// </summary>
+        /// <param name="url">Service URL passed by the user.</param>
+        /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
+        /// <returns>HttpResponseMessage which contains the data in the form of JSON .</returns>
+        /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
+        public static HttpResponseMessage get(string url, Dictionary<object, object> parameters)
         {
             var client = getClient();
             client.DefaultRequestHeaders.Add("Accept", "application/json");
-            var responce= client.GetAsync(getQueryString(url,parameters)).Result;
+            var responce = client.GetAsync(getQueryString(url, parameters)).Result;
             if (responce.IsSuccessStatusCode)
                 return responce;
-            else
-                throw new BooksException(ErrorParser.getErrorMessage(responce));
+            throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
-        /// Makes a POST request and creates a resource for the given URL and a request body.
+        ///     Makes a POST request and creates a resource for the given URL and a request body.
         /// </summary>
         /// <param name="url">Service URL passed by the user.</param>
         /// <param name="requestBody">It contains the request body parameters to make the POST request.</param>
         /// <returns>HttpResponseMessage which contains the data in the form of JSON .</returns>
         /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
-        public static HttpResponseMessage post(string url,Dictionary<object,object> requestBody)
+        public static HttpResponseMessage post(string url, Dictionary<object, object> requestBody)
         {
             var client = getClient();
-            List<KeyValuePair<string,string>> contentBody=new List<KeyValuePair<string,string>>();
+            var contentBody = new List<KeyValuePair<string, string>>();
             foreach (var requestbodyParam in requestBody)
             {
-                var temp = new KeyValuePair<string, string>(requestbodyParam.Key.ToString(), requestbodyParam.Value.ToString());
+                var temp = new KeyValuePair<string, string>(requestbodyParam.Key.ToString(),
+                    requestbodyParam.Value.ToString());
                 contentBody.Add(temp);
             }
             var content = new FormUrlEncodedContent(contentBody);
-            var responce= client.PostAsync(url,content).Result;
+            var responce = client.PostAsync(url, content).Result;
             if (responce.IsSuccessStatusCode)
                 return responce;
-            else
-                throw new BooksException(ErrorParser.getErrorMessage(responce));
+            throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
-        /// Makes a POST request and creates a resource for the given URL and a MultiPart form data.
+        ///     Makes a POST request and creates a resource for the given URL and a MultiPart form data.
         /// </summary>
         /// <param name="url">Service URL passed by the user.</param>
         /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
@@ -98,36 +93,34 @@ namespace zohobooks.util
         /// <param name="attachments">It contains the files to attach or post for the requested URL .</param>
         /// <returns>HttpResponseMessage which contains the data in the form of JSON .</returns>
         /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
-        public static HttpResponseMessage post(string url, Dictionary<object, object> parameters,Dictionary<object,object> requestBody,KeyValuePair<string,string[]> attachments)
+        public static HttpResponseMessage post(string url, Dictionary<object, object> parameters,
+            Dictionary<object, object> requestBody, KeyValuePair<string, string[]> attachments)
         {
             var client = getClient();
-            var boundary =DateTime.Now.Ticks.ToString();
+            var boundary = DateTime.Now.Ticks.ToString();
             client.DefaultRequestHeaders.Add("Accept", "application/json");
-            
-            MultipartFormDataContent content = new MultipartFormDataContent("--boundary--");
-            if(requestBody!=null)
-            foreach (var requestbodyParam in requestBody)
-                content.Add(new StringContent(requestbodyParam.Value.ToString()), requestbodyParam.Key.ToString());
+
+            var content = new MultipartFormDataContent("--boundary--");
+            if (requestBody != null)
+                foreach (var requestbodyParam in requestBody)
+                    content.Add(new StringContent(requestbodyParam.Value.ToString()), requestbodyParam.Key.ToString());
             if (attachments.Value != null)
-            {
                 foreach (var file_path in attachments.Value)
                     if (file_path != null)
                     {
-                        string _filename = Path.GetFileName(file_path);
-                        FileStream fileStream = new FileStream(file_path, FileMode.Open, FileAccess.Read, FileShare.Read);
-                        StreamContent fileContent = new StreamContent(fileStream);
+                        var _filename = Path.GetFileName(file_path);
+                        var fileStream = new FileStream(file_path, FileMode.Open, FileAccess.Read, FileShare.Read);
+                        var fileContent = new StreamContent(fileStream);
                         content.Add(fileContent, attachments.Key, _filename);
                     }
-            }
             var responce = client.PostAsync(getQueryString(url, parameters), content).Result;
             if (responce.IsSuccessStatusCode)
                 return responce;
-            else
-                throw new BooksException(ErrorParser.getErrorMessage(responce));
+            throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
-        /// Makes a PUT request and update the resource for the given URL and a request body.
+        ///     Makes a PUT request and update the resource for the given URL and a request body.
         /// </summary>
         /// <param name="url">Service URL passed by the user.</param>
         /// <param name="requestBody">It contains the request body parameters to make the PUT request.</param>
@@ -136,22 +129,22 @@ namespace zohobooks.util
         public static HttpResponseMessage put(string url, Dictionary<object, object> requestBody)
         {
             var client = getClient();
-            List<KeyValuePair<string, string>> contentBody = new List<KeyValuePair<string, string>>();
+            var contentBody = new List<KeyValuePair<string, string>>();
             foreach (var requestbodyParam in requestBody)
             {
-                var temp = new KeyValuePair<string, string>(requestbodyParam.Key.ToString(), requestbodyParam.Value.ToString());
+                var temp = new KeyValuePair<string, string>(requestbodyParam.Key.ToString(),
+                    requestbodyParam.Value.ToString());
                 contentBody.Add(temp);
             }
             var content = new FormUrlEncodedContent(contentBody);
             var responce = client.PutAsync(url, content).Result;
             if (responce.IsSuccessStatusCode)
                 return responce;
-            else
-                throw new BooksException(ErrorParser.getErrorMessage(responce));
+            throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
         /// <summary>
-        /// Makes a PUT request and update the resource for the given URL and a request body.
+        ///     Makes a PUT request and update the resource for the given URL and a request body.
         /// </summary>
         /// <param name="url">Service URL passed by the user.</param>
         /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
@@ -159,72 +152,76 @@ namespace zohobooks.util
         /// <param name="attachment">It contains the files to attach or post for the requested URL.</param>
         /// <returns>HttpResponseMessage which contains the data in the form of JSON.</returns>
         /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
-        public static HttpResponseMessage put(string url, Dictionary<object, object> parameters,Dictionary<object,object> requestBody ,KeyValuePair<string, string> attachment)
+        public static HttpResponseMessage put(string url, Dictionary<object, object> parameters,
+            Dictionary<object, object> requestBody, KeyValuePair<string, string> attachment)
         {
             var client = getClient();
             var boundary = DateTime.Now.Ticks.ToString();
             client.DefaultRequestHeaders.Add("Accept", "application/json");
-            MultipartFormDataContent content = new MultipartFormDataContent(boundary);
+            var content = new MultipartFormDataContent(boundary);
             foreach (var requestBodyParam in requestBody)
                 content.Add(new StringContent(requestBodyParam.Value.ToString()), requestBodyParam.Key.ToString());
             if (attachment.Value != null)
             {
-                string _filename = Path.GetFileName(attachment.Value);
-                FileStream fileStream = new FileStream(attachment.Value, FileMode.Open, FileAccess.Read, FileShare.Read);
-                StreamContent fileContent = new StreamContent(fileStream);
+                var _filename = Path.GetFileName(attachment.Value);
+                var fileStream = new FileStream(attachment.Value, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var fileContent = new StreamContent(fileStream);
                 content.Add(fileContent, attachment.Key, _filename);
             }
-            var responce = client.PutAsync(getQueryString(url,parameters), content).Result;
+            var responce = client.PutAsync(getQueryString(url, parameters), content).Result;
             if (responce.IsSuccessStatusCode)
                 return responce;
-            else
-                throw new BooksException(ErrorParser.getErrorMessage(responce));
+            throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
 
         /// <summary>
-        /// Make a DELETE request for the given URL and a query string.
+        ///     Make a DELETE request for the given URL and a query string.
         /// </summary>
         /// <param name="url">Service URL passed by the user.</param>
         /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
         /// <returns>HttpResponseMessage which contains the data in the form of JSON.</returns>
         /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
-         public static HttpResponseMessage delete(string url,Dictionary<object,object> parameters)
+        public static HttpResponseMessage delete(string url, Dictionary<object, object> parameters)
         {
             var client = getClient();
             var responce = client.DeleteAsync(getQueryString(url, parameters)).Result;
             if (responce.IsSuccessStatusCode)
                 return responce;
-            else
-                throw new BooksException(ErrorParser.getErrorMessage(responce));
+            throw new BooksException(ErrorParser.getErrorMessage(responce));
         }
 
-         /// <summary>
-         /// Gets the file data for the given GET request .
-         /// </summary>
-         /// <param name="url">Service URL passed by the user.</param>
-         /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
-         /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
-         public static void getFile(string url, Dictionary<object, object> parameters)
-         {
-             var client = getClient();
-             client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-            var responce= client.GetAsync(getQueryString(url,parameters)).Result;
+        /// <summary>
+        ///     Gets the file data for the given GET request .
+        /// </summary>
+        /// <param name="url">Service URL passed by the user.</param>
+        /// <param name="parameters">The parameters contains the query string parameters in the form of key, value pair.</param>
+        /// <exception cref="BooksException">Throws the Exception with error messege return from the server.</exception>
+        public static void getFile(string url, Dictionary<object, object> parameters)
+        {
+            var client = getClient();
+            client.DefaultRequestHeaders.Add("Accept",
+                "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            var responce = client.GetAsync(getQueryString(url, parameters)).Result;
             if (responce.IsSuccessStatusCode)
             {
-                string contentDisposition = responce.Content.Headers.ContentDisposition.ToString();
+                var contentDisposition = responce.Content.Headers.ContentDisposition.ToString();
                 const string contentFileNamePortion = "filename=\"";
-                var fileNameStartIndex = contentDisposition.IndexOf(contentFileNamePortion, StringComparison.InvariantCulture) + contentFileNamePortion.Length;
+                var fileNameStartIndex =
+                    contentDisposition.IndexOf(contentFileNamePortion, StringComparison.InvariantCulture) +
+                    contentFileNamePortion.Length;
                 var originalFileNameLength = contentDisposition.Length - fileNameStartIndex - 1;
                 var filename = contentDisposition.Substring(fileNameStartIndex, originalFileNameLength);
-                FileStream fileStream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+                var fileStream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite,
+                    FileShare.ReadWrite);
                 responce.Content.CopyToAsync(fileStream);
                 fileStream.Close();
                 Process.Start(filename);
             }
             else
+            {
                 throw new BooksException(ErrorParser.getErrorMessage(responce));
-         }
-
+            }
+        }
     }
 }

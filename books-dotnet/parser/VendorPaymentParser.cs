@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
@@ -10,15 +6,15 @@ using zohobooks.model;
 namespace zohobooks.parser
 {
     /// <summary>
-    /// Used to define the parser object of VendorPaymentsApi.
+    ///     Used to define the parser object of VendorPaymentsApi.
     /// </summary>
-    class VendorPaymentParser
+    internal class VendorPaymentParser
     {
-
         internal static string getMessage(HttpResponseMessage responce)
         {
-            string message = "";
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var message = "";
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("message"))
                 message = jsonObj["message"].ToString();
             return message;
@@ -27,7 +23,8 @@ namespace zohobooks.parser
         internal static VendorPaymentList getVendorPaymentList(HttpResponseMessage responce)
         {
             var vendorPaymentList = new VendorPaymentList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("vendorpayments"))
             {
                 var paymentsArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["vendorpayments"].ToString());
@@ -50,11 +47,10 @@ namespace zohobooks.parser
         internal static VendorPayment getVendorPayment(HttpResponseMessage responce)
         {
             var payment = new VendorPayment();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("vendorpayment"))
-            {
                 payment = JsonConvert.DeserializeObject<VendorPayment>(jsonObj["vendorpayment"].ToString());
-            }
             return payment;
         }
     }

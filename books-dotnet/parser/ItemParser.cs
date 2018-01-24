@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
@@ -10,15 +6,15 @@ using zohobooks.model;
 namespace zohobooks.parser
 {
     /// <summary>
-    /// Used to define the parser object of ItemsApi.
+    ///     Used to define the parser object of ItemsApi.
     /// </summary>
-    class ItemParser
+    internal class ItemParser
     {
-
         internal static string getMessage(HttpResponseMessage responce)
         {
-            string message = "";
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var message = "";
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("message"))
                 message = jsonObj["message"].ToString();
             return message;
@@ -27,11 +23,12 @@ namespace zohobooks.parser
         internal static ItemList getItemList(HttpResponseMessage response)
         {
             var itemList = new ItemList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("items"))
             {
                 var itemsArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["items"].ToString());
-                foreach(var itemObj in itemsArray)
+                foreach (var itemObj in itemsArray)
                 {
                     var item = new LineItem();
                     item = JsonConvert.DeserializeObject<LineItem>(itemObj.ToString());
@@ -50,11 +47,10 @@ namespace zohobooks.parser
         internal static LineItem getItem(HttpResponseMessage response)
         {
             var item = new LineItem();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("item"))
-            {
                 item = JsonConvert.DeserializeObject<LineItem>(jsonObj["item"].ToString());
-            }
             return item;
         }
     }

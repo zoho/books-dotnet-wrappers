@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace zohobooks.model
 {
     /// <summary>
-    /// Class CredoitedInvoiceList.
+    ///     Class CredoitedInvoiceList.
     /// </summary>
-    public class CreditedInvoiceList:List<CreditedInvoice>
+    public class CreditedInvoiceList : List<CreditedInvoice>
     {
     }
 }
