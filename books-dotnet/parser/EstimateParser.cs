@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
@@ -10,14 +6,15 @@ using zohobooks.model;
 namespace zohobooks.parser
 {
     /// <summary>
-    /// Used to define the parser object of EstimateApi.
+    ///     Used to define the parser object of EstimateApi.
     /// </summary>
-    class EstimateParser
+    internal class EstimateParser
     {
         internal static string getMessage(HttpResponseMessage responce)
         {
-            string message = "";
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var message = "";
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("message"))
                 message = jsonObj["message"].ToString();
             return message;
@@ -26,11 +23,12 @@ namespace zohobooks.parser
         internal static EstimateList getEstimateList(HttpResponseMessage responce)
         {
             var estimateList = new EstimateList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("estimates"))
             {
                 var estimatesArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["estimates"].ToString());
-                foreach(var estimateObj in estimatesArray)
+                foreach (var estimateObj in estimatesArray)
                 {
                     var estimate = new Estimate();
                     estimate = JsonConvert.DeserializeObject<Estimate>(estimateObj.ToString());
@@ -49,11 +47,10 @@ namespace zohobooks.parser
         internal static Estimate getEstimate(HttpResponseMessage responce)
         {
             var estimate = new Estimate();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("estimate"))
-            {
                 estimate = JsonConvert.DeserializeObject<Estimate>(jsonObj["estimate"].ToString());
-            }
             return estimate;
         }
     }

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace zohobooks.model
 {
     /// <summary>
-    /// Class PaymentList.
+    ///     Class PaymentList.
     /// </summary>
-    public class PaymentList:List<Payment>
+    public class PaymentList : List<Payment>
     {
     }
 }

@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
-using zohobooks.model;
 using Newtonsoft.Json.Linq;
+using zohobooks.model;
 
 namespace zohobooks.parser
 {
     /// <summary>
-    /// Used to define the parser object of BillsApi.
+    ///     Used to define the parser object of BillsApi.
     /// </summary>
-    class BillParser
+    internal class BillParser
     {
         internal static BillList getBillList(HttpResponseMessage responce)
         {
             var billList = new BillList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("bills"))
             {
                 var billsArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["bills"].ToString());
-                foreach(var billObj in billsArray)
+                foreach (var billObj in billsArray)
                 {
                     var bill = new Bill();
                     bill = JsonConvert.DeserializeObject<Bill>(billObj.ToString());
@@ -40,20 +37,18 @@ namespace zohobooks.parser
 
         internal static Bill getBill(HttpResponseMessage responce)
         {
-            var bill=new Bill();
+            var bill = new Bill();
             var json = responce.Content.ReadAsStringAsync().Result;
             var jsonObj = JObject.Parse(json).ToObject<Dictionary<string, object>>();
             //var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(json.ToString());
-            if(jsonObj.ContainsKey("bill"))
-            {
+            if (jsonObj.ContainsKey("bill"))
                 bill = JsonConvert.DeserializeObject<Bill>(jsonObj["bill"].ToString());
-            }
             return bill;
         }
 
         internal static string getMessage(HttpResponseMessage responce)
         {
-            string message = "";
+            var message = "";
             var json = responce.Content.ReadAsStringAsync().Result;
             var jsonObj = JObject.Parse(json).ToObject<Dictionary<string, object>>();
             //var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
@@ -65,11 +60,12 @@ namespace zohobooks.parser
         internal static PaymentList getPaymentList(HttpResponseMessage responce)
         {
             var paymentList = new PaymentList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("payments"))
             {
                 var paymentsArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["payments"].ToString());
-                foreach(var paymentObj in paymentsArray)
+                foreach (var paymentObj in paymentsArray)
                 {
                     var payment = new Payment();
                     payment = JsonConvert.DeserializeObject<Payment>(paymentObj.ToString());
@@ -82,11 +78,12 @@ namespace zohobooks.parser
         internal static CommentList getCommentsList(HttpResponseMessage responce)
         {
             var commentList = new CommentList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("comments"))
             {
                 var commentsArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["comments"].ToString());
-                foreach(var commentObj in commentsArray)
+                foreach (var commentObj in commentsArray)
                 {
                     var comment = new Comment();
                     comment = JsonConvert.DeserializeObject<Comment>(commentObj.ToString());

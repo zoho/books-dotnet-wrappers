@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
@@ -10,15 +6,15 @@ using zohobooks.model;
 namespace zohobooks.parser
 {
     /// <summary>
-    /// Used to define the parser object of RecurringInvoicesApi.
+    ///     Used to define the parser object of RecurringInvoicesApi.
     /// </summary>
-    class RecurringInvoiceParser
+    internal class RecurringInvoiceParser
     {
-
         internal static string getMessage(HttpResponseMessage responce)
         {
-            string message = "";
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var message = "";
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("message"))
                 message = jsonObj["message"].ToString();
             return message;
@@ -27,10 +23,12 @@ namespace zohobooks.parser
         internal static RecurringInvoiceList getRecurringInvoiceList(HttpResponseMessage responce)
         {
             var recInvoiceList = new RecurringInvoiceList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("recurring_invoices"))
             {
-                var recInvoiceArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["recurring_invoices"].ToString());
+                var recInvoiceArray =
+                    JsonConvert.DeserializeObject<List<object>>(jsonObj["recurring_invoices"].ToString());
                 foreach (var recInvoiceObj in recInvoiceArray)
                 {
                     var recInvoice = new RecurringInvoice();
@@ -50,11 +48,10 @@ namespace zohobooks.parser
         internal static RecurringInvoice getRecurringInvoice(HttpResponseMessage responce)
         {
             var recInvoice = new RecurringInvoice();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("recurring_invoice"))
-            {
                 recInvoice = JsonConvert.DeserializeObject<RecurringInvoice>(jsonObj["recurring_invoice"].ToString());
-            }
             return recInvoice;
         }
     }

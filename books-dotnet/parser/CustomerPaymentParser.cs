@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using zohobooks.model;
@@ -10,14 +6,15 @@ using zohobooks.model;
 namespace zohobooks.parser
 {
     /// <summary>
-    /// Used to define the parser object of CustomerPaymentsApi.
+    ///     Used to define the parser object of CustomerPaymentsApi.
     /// </summary>
-    class CustomerPaymentParser
+    internal class CustomerPaymentParser
     {
         internal static string getMessage(HttpResponseMessage responce)
         {
-            string message = "";
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var message = "";
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("message"))
                 message = jsonObj["message"].ToString();
             return message;
@@ -26,11 +23,12 @@ namespace zohobooks.parser
         internal static CustomerPaymentList getPaymentList(HttpResponseMessage responce)
         {
             var customerPaymentlist = new CustomerPaymentList();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("customerpayments"))
             {
                 var paymentsArray = JsonConvert.DeserializeObject<List<object>>(jsonObj["customerpayments"].ToString());
-                foreach(var paymentObj in paymentsArray)
+                foreach (var paymentObj in paymentsArray)
                 {
                     var payment = new CustomerPayment();
                     payment = JsonConvert.DeserializeObject<CustomerPayment>(paymentObj.ToString());
@@ -49,11 +47,10 @@ namespace zohobooks.parser
         internal static CustomerPayment getPayment(HttpResponseMessage responce)
         {
             var payment = new CustomerPayment();
-            var jsonObj = JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+            var jsonObj =
+                JsonConvert.DeserializeObject<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
             if (jsonObj.ContainsKey("payment"))
-            {
                 payment = JsonConvert.DeserializeObject<CustomerPayment>(jsonObj["payment"].ToString());
-            }
             return payment;
         }
     }

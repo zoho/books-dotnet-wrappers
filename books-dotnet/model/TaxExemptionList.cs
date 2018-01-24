@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace zohobooks.model
 {
     /// <summary>
-    /// Class TaxExemptionList.
+    ///     Class TaxExemptionList.
     /// </summary>
     public class TaxExemptionList : List<TaxExemption>
     {

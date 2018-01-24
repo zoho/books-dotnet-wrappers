@@ -6,3 +6,5 @@
 /test/*/*.xml
 /test/*/*/bin
 /test/*/*/obj
+/packages/
+/.vs/

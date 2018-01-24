@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace zohobooks.model
 {
     /// <summary>
-    /// Class AutoReminderList.
+    ///     Class AutoReminderList.
     /// </summary>
-    public class AutoReminderList:List<AutoReminder>
+    public class AutoReminderList : List<AutoReminder>
     {
     }
 }
