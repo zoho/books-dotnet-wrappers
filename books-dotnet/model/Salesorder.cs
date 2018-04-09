@@ -95,7 +95,7 @@ namespace zohobooks.model
         /// Gets or sets the contact_persons.
         /// </summary>
         /// <value>The contact_persons.</value>
-        public List<ContactPerson> contact_persons { get; set; }
+        public List<string> contact_persons { get; set; }
         /// <summary>
         /// Gets or sets the currency_symbol.
         /// </summary>
