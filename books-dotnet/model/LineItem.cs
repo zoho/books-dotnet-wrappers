@@ -187,5 +187,10 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The stock_on_hand.</value>
         public string stock_on_hand { get; set; }
+        /// <summary>
+        /// Gets or sets the sku.
+        /// </summary>
+        /// <value>The stock keeping unit.</value>
+        public string sku { get; set; }
     }
 }

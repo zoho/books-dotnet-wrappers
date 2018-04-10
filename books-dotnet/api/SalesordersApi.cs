@@ -41,6 +41,22 @@ namespace zohobooks.api
             return SalesorderParser.getSalesorderList(responce);
         }
         /// <summary>
+        /// Gets the specified salesorders_number.
+        /// </summary>
+        /// <param name="salesorder_number">The salesorder_number</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>SalesorderList.</returns>
+        public Salesorder GetSalesOrderByNumber(Dictionary<object, object> parameters, string salesorder_number)
+        {
+            string url = baseAddress;
+            if (parameters == null)
+                parameters = new Dictionary<object, object>();
+
+            parameters.Add("salesorder_number", salesorder_number);
+            var responce = ZohoHttpClient.get(url, getQueryParameters(parameters));
+            return SalesorderParser.getSalesorderList(responce).FirstOrDefault();
+        }
+        /// <summary>
         /// Gets the specified salesorder_id.
         /// </summary>
         /// <param name="salesorder_id">The salesorder_id.</param>
