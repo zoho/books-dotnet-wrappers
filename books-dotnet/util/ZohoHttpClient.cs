@@ -11,6 +11,7 @@ using System.Diagnostics;
 using zohobooks.exceptions;
 using zohobooks.model;
 using zohobooks.parser;
+using System.Net;
 
 namespace zohobooks.util
 {
@@ -23,13 +24,19 @@ namespace zohobooks.util
         /// Gets the client.
         /// </summary>
         /// <returns>HttpClient object.</returns>
+        private static HttpClient _client = null;
         static HttpClient getClient()
           {
-              HttpClient client = new HttpClient();
-              client.Timeout = new TimeSpan(0, 0, 60);
-              client.DefaultRequestHeaders.Add("Accept-Charset", "UTF-8");
-              client.DefaultRequestHeaders.Add("User-Agent", "ZohoBooks-dotnet-Wrappers/1.0");
-              return client;
+            if (_client == null)
+            {
+                _client = new HttpClient();
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+                _client.Timeout = new TimeSpan(0, 0, 60);
+                _client.DefaultRequestHeaders.Add("Accept-Charset", "UTF-8");
+                _client.DefaultRequestHeaders.Add("User-Agent", "ZohoBooks-dotnet-Wrappers/1.0");
+            }
+           
+            return _client;
           } 
          /// <summary>
          /// Make a query string from the given parameters.
@@ -84,11 +91,18 @@ namespace zohobooks.util
                 contentBody.Add(temp);
             }
             var content = new ZohoFormUrlEncodedContent(contentBody);
-            var responce= client.PostAsync(url,content).Result;
-            if (responce.IsSuccessStatusCode)
-                return responce;
-            else
-                throw new BooksException(ErrorParser.getErrorMessage(responce));
+            try
+            {
+                var responce = client.PostAsync(url, content).Result;
+                if (responce.IsSuccessStatusCode)
+                    return responce;
+                else
+                    throw new BooksException(ErrorParser.getErrorMessage(responce));
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new BooksException(String.Format("Error posting data to {0}", url), ex);
+            }
         }
 
         /// <summary>
