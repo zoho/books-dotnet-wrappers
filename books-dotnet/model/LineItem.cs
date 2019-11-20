@@ -35,7 +35,7 @@ namespace zohobooks.model
         /// Gets or sets the item_order.
         /// </summary>
         /// <value>The item_order.</value>
-        public double item_order { get; set; }
+        // public double item_order { get; set; }
         /// <summary>
         /// Gets or sets the bcy_rate.
         /// </summary>
