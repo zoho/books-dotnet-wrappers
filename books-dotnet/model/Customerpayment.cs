@@ -116,6 +116,11 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The invoices.</value>
         public List<Invoice> invoices { get; set; }
+        /// <summary>
+        /// Custom fields to send for payment
+        /// </summary>
+        public List<CustomField> custom_fields { get; set; }
+
     }
 
 }

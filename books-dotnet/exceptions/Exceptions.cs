@@ -15,7 +15,9 @@ namespace zohobooks.exceptions
         /// Initializes a new instance of the <see cref="T:System.ApplicationException" /> class with a specified error message.
         /// </summary>
         /// <param name="message">A message that describes the error.</param>
-        public BooksException(string message): base(message) { }
+        public BooksException(string message): base(message) {
+
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.ApplicationException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.
         /// </summary>

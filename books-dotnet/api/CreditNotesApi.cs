@@ -351,7 +351,7 @@ namespace zohobooks.api
         /// <returns>Creditnote object.</returns>
         public CreditNote AddRefund(string creditnote_id, CreditNote refund_details)
         {
-            string url = baseAddress + creditnote_id + "/refunds";
+            string url = baseAddress + "/" + creditnote_id + "/refunds";
             var json = JsonConvert.SerializeObject(refund_details);
             var jsonstring = new Dictionary<object, object>();
             jsonstring.Add("JSONString", json);

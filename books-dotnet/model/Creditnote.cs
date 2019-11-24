@@ -210,5 +210,10 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The from_account_name.</value>
         public string from_account_name { get; set; }
+        /// <summary>
+        /// Custom fields to send for credit note
+        /// </summary>
+        public List<CustomField> custom_fields { get; set; }
+
     }
 }

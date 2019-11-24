@@ -111,6 +111,7 @@ namespace zohobooks.api
             parameters.Add("JSONString", json);
             var responce = ZohoHttpClient.post(url, getQueryParameters(parameters));
             var responceContent = responce.Content.ReadAsStringAsync().Result;
+            Console.WriteLine("responseContent: {0}", responceContent);
             return InvoiceParser.getInvoice(responce);
         }
 
@@ -131,6 +132,7 @@ namespace zohobooks.api
             parameters.Add("JSONString", json);
             var responce = ZohoHttpClient.put(url, getQueryParameters(parameters));
             var responceContent = responce.Content.ReadAsStringAsync().Result;
+            Console.WriteLine("responseContent: {0}", responceContent);
             return InvoiceParser.getInvoice(responce);
         }
 

@@ -35,7 +35,7 @@ namespace zohobooks.model
         /// Gets or sets the item_order.
         /// </summary>
         /// <value>The item_order.</value>
-        public double item_order { get; set; }
+        // public double item_order { get; set; }
         /// <summary>
         /// Gets or sets the bcy_rate.
         /// </summary>
@@ -60,7 +60,7 @@ namespace zohobooks.model
         /// Gets or sets the time_entry_ids.
         /// </summary>
         /// <value>The time_entry_ids.</value>
-        public string time_entry_ids { get; set; }
+        public List<string> time_entry_ids { get; set; }
         /// <summary>
         /// Gets or sets the expense_id.
         /// </summary>
@@ -187,5 +187,13 @@ namespace zohobooks.model
         /// </summary>
         /// <value>The stock_on_hand.</value>
         public string stock_on_hand { get; set; }
+        /// <summary>
+        /// Custom fields for item
+        /// </summary>
+        public List<CustomField> custom_fields { get; set; }
+        /// <summary>
+        /// Custom fields for line item
+        /// </summary>
+        public List<CustomField> item_custom_fields { get; set; }
     }
 }
